@@ -927,22 +927,6 @@ sequenceDiagram
           </div>
         </div>
         <div class="risk-card">
-          <div class="risk-badge med">M</div>
-          <div>
-            <div class="risk-title">Provider integration complexity</div>
-            <div class="risk-body">No standardized APIs. Portal-based manual quoting limits throughput. High probability, medium severity.</div>
-            <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses middleware (Habit Analytics, lluni/i2S) rather than direct integrations. Manual fallback for initial policies. Scale integrations as volume justifies investment.</div>
-          </div>
-        </div>
-        <div class="risk-card">
-          <div class="risk-badge med">M</div>
-          <div>
-            <div class="risk-title">D2C customer acquisition cost</div>
-            <div class="risk-body">Insurance is "sold, not bought." Inbound-only omni-channel may not convert at assumed rates without active outreach. Medium probability, medium severity.</div>
-            <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses warm leads (Rolando's network, Gonçalo's professional contacts). Phase 2 adds B2B2C embedded channel to diversify acquisition. Avoid dependency on paid D2C acquisition.</div>
-          </div>
-        </div>
-        <div class="risk-card">
           <div class="risk-badge hi">H</div>
           <div>
             <div class="risk-title">Well-funded entrant</div>
@@ -959,11 +943,19 @@ sequenceDiagram
           </div>
         </div>
         <div class="risk-card">
-          <div class="risk-badge lo">L</div>
+          <div class="risk-badge med">M</div>
           <div>
-            <div class="risk-title">EU AI Act interpretation</div>
-            <div class="risk-body">ASF/BdP impose unexpected constraints on AI-driven intermediation. Low probability, high severity.</div>
-            <div class="risk-mit"><strong>Mitigant:</strong> Structure as licensed entity with AI tools from day one. Engage FinLab proactively. Build compliance natively. The risk is far higher for incumbents adding AI than for AI-native operators.</div>
+            <div class="risk-title">Provider integration complexity</div>
+            <div class="risk-body">No standardized APIs. Portal-based manual quoting limits throughput. High probability, medium severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses middleware (Habit Analytics, lluni/i2S) rather than direct integrations. Manual fallback for initial policies. Scale integrations as volume justifies investment.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">D2C customer acquisition cost</div>
+            <div class="risk-body">Insurance is "sold, not bought." Inbound-only omni-channel may not convert at assumed rates without active outreach. Medium probability, medium severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses warm leads (Rolando's network, Gonçalo's professional contacts). Phase 2 adds B2B2C embedded channel to diversify acquisition. Avoid dependency on paid D2C acquisition.</div>
           </div>
         </div>
         <div class="risk-card">
@@ -972,6 +964,14 @@ sequenceDiagram
             <div class="risk-title">Renewal / retention risk</div>
             <div class="risk-body">SME clients churn at renewal, undermining LTV assumptions. Medium probability, medium severity.</div>
             <div class="risk-mit"><strong>Mitigant:</strong> Proactive renewal management (AI-driven alerts 60 days before expiry). Annual coverage review as value-add. Bundle multiple products to increase switching cost. Target &gt;85% renewal rate.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge lo">L</div>
+          <div>
+            <div class="risk-title">EU AI Act interpretation</div>
+            <div class="risk-body">ASF/BdP impose unexpected constraints on AI-driven intermediation. Low probability, high severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Structure as licensed entity with AI tools from day one. Engage FinLab proactively. Build compliance natively. The risk is far higher for incumbents adding AI than for AI-native operators.</div>
           </div>
         </div>
       </div>
