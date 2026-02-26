@@ -442,7 +442,7 @@
         </div>
         <div class="exec-card">
           <div class="exec-card-label">The Solution</div>
-          <p>agent-resolv is an AI-native broker agent for credit and insurance intermediation. It sits between the consumer — human or AI agent — and the provider. It ingests requests via WhatsApp or API, compiles information, routes to providers, analyses responses, and returns recommendations. It is not a chatbot or comparison site. <strong>It is the broker</strong> — a complete agentification of brokerage as software, holding dual ASF corretor de seguros and BdP independent credit intermediary licenses.</p>
+          <p>agent-resolv is an AI-native broker agent for credit and insurance intermediation. It sits between the consumer — human or AI agent — and the provider. It ingests requests via any channel (WhatsApp, Telegram, email, voice, or API), compiles information, routes to providers, analyses responses, and returns recommendations. It is not a chatbot or comparison site. <strong>It is the broker</strong> — a complete agentification of brokerage as software, holding dual ASF corretor de seguros and BdP independent credit intermediary licenses.</p>
         </div>
         <div class="exec-card">
           <div class="exec-card-label">Go-to-Market</div>
@@ -603,15 +603,15 @@ graph TB
           <div class="mermaid">
 sequenceDiagram
     participant SME as SME Owner
-    participant WA as WhatsApp
+    participant CH as Channel<br/>(Email · Voice · WhatsApp · Web)
     participant BA as Broker Agent
     participant PIL as Provider Layer
     participant INS as Insurers (3–5)
 
-    SME->>WA: "I need workers' comp and liability"
-    WA->>BA: Ingest request
+    SME->>CH: "I need workers' comp and liability"
+    CH->>BA: Normalised structured request
     BA->>SME: Structured intake: employees, sector, turnover
-    SME->>BA: Provides info
+    SME->>BA: Provides info (same channel)
     BA->>PIL: Request parallel quotes
     PIL->>INS: Simultaneous quote requests
     INS->>PIL: Quotes returned (24–72h)
@@ -750,7 +750,7 @@ sequenceDiagram
             <tr>
               <td>2 — Market entry</td>
               <td>Months 6–18</td>
-              <td>WhatsApp + first B2B2C partnership</td>
+              <td>Omni-channel + first B2B2C partnership</td>
               <td>Broader SME market + credit intermediation launched</td>
               <td>500+ active clients, LTV &gt; 3× CAC</td>
             </tr>
@@ -767,7 +767,7 @@ sequenceDiagram
 
       <div class="callout">
         <div class="callout-label">What proves the model first</div>
-        <p><strong>SME workers' compensation + professional liability via WhatsApp, sourced through Rolando's existing network and Gonçalo's professional contacts.</strong> Mandatory purchase demand (no discretionary risk). High commission rates (15–25%). Warm pipeline that doesn't require paid acquisition. If the AI broker can quote, compare, and bind faster and more comprehensively than the traditional process — with compliant documentation — the model is proved.</p>
+        <p><strong>SME workers' compensation + professional liability via omni-channel intake, sourced through Rolando's existing network and Gonçalo's professional contacts.</strong> Mandatory purchase demand (no discretionary risk). High commission rates (15–25%). Warm pipeline that doesn't require paid acquisition. If the AI broker can quote, compare, and bind faster and more comprehensively than the traditional process — with compliant documentation — the model is proved.</p>
       </div>
     </div>
 
@@ -939,7 +939,7 @@ sequenceDiagram
           <div class="risk-badge med">M</div>
           <div>
             <div class="risk-title">D2C customer acquisition cost</div>
-            <div class="risk-body">Insurance is "sold, not bought." WhatsApp marketing may not convert at assumed rates. Medium probability, medium severity.</div>
+            <div class="risk-body">Insurance is "sold, not bought." Inbound-only omni-channel may not convert at assumed rates without active outreach. Medium probability, medium severity.</div>
             <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses warm leads (Rolando's network, Gonçalo's professional contacts). Phase 2 adds B2B2C embedded channel to diversify acquisition. Avoid dependency on paid D2C acquisition.</div>
           </div>
         </div>
