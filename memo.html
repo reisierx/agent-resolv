@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>agent-resolv — Investment Memorandum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #07070E;
+      --bg-2:      #0C0C1A;
+      --bg-card:   #10101E;
+      --border:    rgba(255,255,255,0.07);
+      --border-hi: rgba(255,255,255,0.11);
+      --accent:    #5B50F0;
+      --accent-2:  #20CCD8;
+      --text:      #EEEEFF;
+      --text-2:    #8888A8;
+      --text-3:    #40404E;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(7,7,14,0.85);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-size: 1rem; font-weight: 800; letter-spacing: -0.04em;
+      color: var(--text); text-decoration: none;
+    }
+    .logo em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-meta {
+      font-size: 0.8rem; color: var(--text-2); font-weight: 500;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .confidential-badge {
+      padding: 0.25rem 0.75rem;
+      background: rgba(255,92,92,0.08); border: 1px solid rgba(255,92,92,0.2);
+      border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+      color: #FF8888; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── LAYOUT ───────────────────────────────────────── */
+    .page {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+      padding-top: 60px;
+    }
+
+    /* ── SIDEBAR ──────────────────────────────────────── */
+    aside {
+      position: sticky; top: 60px; height: calc(100vh - 60px);
+      overflow-y: auto; padding: 2.5rem 1.5rem;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .toc-title {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--text-3); margin-bottom: 1.25rem;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li + li { margin-top: 0.2rem; }
+    .toc-list a {
+      display: block; padding: 0.35rem 0.75rem;
+      font-size: 0.8125rem; color: var(--text-2);
+      text-decoration: none; border-radius: 6px;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+      line-height: 1.4;
+    }
+    .toc-list a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .toc-list a.active {
+      color: var(--accent-2); border-left-color: var(--accent-2);
+      background: rgba(32,204,216,0.06);
+    }
+    .toc-section { font-weight: 700; color: var(--text); }
+
+    /* ── MAIN CONTENT ─────────────────────────────────── */
+    main {
+      padding: 4rem 5rem;
+      max-width: 860px;
+    }
+
+    /* ── COVER ────────────────────────────────────────── */
+    .cover {
+      padding: 3.5rem 0 5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 5rem;
+      position: relative; overflow: hidden;
+    }
+    .cover-glow {
+      pointer-events: none; position: absolute; top: -40px; left: -80px; right: 0;
+      height: 300px;
+      background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(91,80,240,0.22) 0%, transparent 70%);
+    }
+    .cover-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.375rem 1rem;
+      background: rgba(91,80,240,0.1); border: 1px solid rgba(91,80,240,0.28);
+      border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; color: #A89FF5;
+      margin-bottom: 2rem; position: relative; z-index: 1;
+    }
+    .cover-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-2);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(32,204,216,0.5); }
+      50%      { opacity:.5; box-shadow: 0 0 0 5px rgba(32,204,216,0); }
+    }
+    .cover h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900; letter-spacing: -0.05em; line-height: 1.05;
+      margin-bottom: 1rem; position: relative; z-index: 1;
+    }
+    .grad {
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 50%, var(--accent-2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .cover-sub {
+      font-size: 1.0625rem; color: var(--text-2); max-width: 520px;
+      line-height: 1.75; margin-bottom: 2.5rem; position: relative; z-index: 1;
+    }
+    .cover-meta {
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      position: relative; z-index: 1;
+    }
+    .meta-item { }
+    .meta-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 0.2rem; }
+    .meta-value { font-size: 0.9rem; font-weight: 600; color: var(--text-2); }
+
+    /* ── SECTION ──────────────────────────────────────── */
+    .memo-section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 80px;
+    }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--accent-2); margin-bottom: 1rem;
+    }
+    .section-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--accent-2); }
+    .section-number {
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--text-3); margin-right: 0.25rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    h3 {
+      font-size: 1.125rem; font-weight: 700; letter-spacing: -0.025em;
+      margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text);
+    }
+    h4 {
+      font-size: 0.9375rem; font-weight: 700;
+      margin-top: 1.75rem; margin-bottom: 0.75rem; color: var(--text-2);
+      text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;
+    }
+    p { color: var(--text-2); margin-bottom: 1.25rem; font-size: 0.9375rem; }
+    p strong { color: var(--text); }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── EXEC SUMMARY CARD ────────────────────────────── */
+    .exec-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 2rem;
+    }
+    .exec-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .exec-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      opacity: 0.5;
+    }
+    .exec-card-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.75rem;
+    }
+    .exec-card p { font-size: 0.875rem; line-height: 1.7; margin-bottom: 0; }
+
+    /* ── STAT ROW ─────────────────────────────────────── */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin: 2rem 0;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+    }
+    .stat-num { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text); }
+    .stat-num .unit { font-size: 1rem; font-weight: 600; }
+    .stat-label { font-size: 0.8rem; color: var(--text-2); margin-top: 0.25rem; }
+
+    /* ── TABLE ────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 1.75rem 0; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    thead th {
+      text-align: left; padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border-hi);
+      font-weight: 700; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-2);
+    }
+    tbody td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: top;
+    }
+    tbody td:first-child { color: var(--text); font-weight: 600; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* ── CALLOUT ──────────────────────────────────────── */
+    .callout {
+      background: rgba(91,80,240,0.07); border: 1px solid rgba(91,80,240,0.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0; padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout p { font-size: 0.9375rem; margin-bottom: 0; }
+    .callout.teal {
+      background: rgba(32,204,216,0.06); border-color: rgba(32,204,216,0.18);
+      border-left-color: var(--accent-2);
+    }
+    .callout.warn {
+      background: rgba(255,180,50,0.06); border-color: rgba(255,180,50,0.18);
+      border-left-color: #FFB432;
+    }
+    .callout .callout-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.5rem;
+    }
+    .callout.teal .callout-label { color: var(--accent-2); }
+    .callout.warn .callout-label { color: #FFB432; }
+
+    /* ── MERMAID DIAGRAM ──────────────────────────────── */
+    .diagram-wrap {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem; margin: 2rem 0;
+      overflow-x: auto;
+    }
+    .diagram-caption {
+      font-size: 0.8rem; color: var(--text-3); text-align: center;
+      margin-top: 1rem; font-style: italic;
+    }
+
+    /* ── RISK TABLE ───────────────────────────────────── */
+    .risk-grid { display: grid; gap: 1rem; margin-top: 1.75rem; }
+    .risk-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start;
+    }
+    .risk-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px;
+      font-size: 0.75rem; font-weight: 800; flex-shrink: 0;
+    }
+    .risk-badge.med { background: rgba(255,180,50,0.12); color: #FFB432; }
+    .risk-badge.hi  { background: rgba(255,92,92,0.12);  color: #FF7070; }
+    .risk-badge.lo  { background: rgba(32,204,216,0.1);  color: var(--accent-2); }
+    .risk-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.35rem; }
+    .risk-body { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; }
+    .risk-mit { font-size: 0.8rem; color: var(--text-3); margin-top: 0.5rem; }
+    .risk-mit strong { color: var(--accent-2); }
+
+    /* ── MILESTONE ────────────────────────────────────── */
+    .milestone-list { list-style: none; margin-top: 1.5rem; }
+    .milestone-list li {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+    }
+    .milestone-list li:last-child { border-bottom: none; }
+    .milestone-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      margin-top: 5px;
+      box-shadow: 0 0 8px rgba(91,80,240,0.5);
+    }
+    .milestone-content { flex: 1; }
+    .milestone-title { font-weight: 700; font-size: 0.9375rem; }
+    .milestone-sub { font-size: 0.875rem; color: var(--text-2); margin-top: 0.25rem; }
+
+    /* ── ASK BOX ──────────────────────────────────────── */
+    .ask-box {
+      background: linear-gradient(135deg, rgba(91,80,240,0.12), rgba(32,204,216,0.08));
+      border: 1px solid rgba(91,80,240,0.28);
+      border-radius: 16px; padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    .ask-box .ask-amount {
+      font-size: 3rem; font-weight: 900; letter-spacing: -0.05em;
+      background: linear-gradient(135deg, var(--text), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .ask-box .ask-label { font-size: 0.875rem; color: var(--text-2); margin-bottom: 2rem; }
+    .ask-uses {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .ask-use {
+      background: rgba(255,255,255,0.04); border-radius: 10px; padding: 1rem 1.25rem;
+    }
+    .ask-use-label { font-size: 0.75rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .ask-use-val { font-size: 0.9375rem; font-weight: 700; color: var(--text); }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 5rem;
+      color: var(--text-3); font-size: 0.8125rem; line-height: 1.7;
+    }
+
+    /* ── SCROLLBAR ────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      aside { display: none; }
+      main { padding: 2.5rem 1.5rem; }
+      .exec-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .ask-uses { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo">agent<em>-resolv</em></a>
+  <div class="nav-meta">
+    <span>26 February 2026</span>
+    <span class="confidential-badge">Confidential</span>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- SIDEBAR TOC -->
+  <aside>
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#exec" class="toc-section">Executive Summary</a></li>
+      <li><a href="#market">1 — Market &amp; Opportunity</a></li>
+      <li><a href="#market-sizing">↳ Market sizing</a></li>
+      <li><a href="#segments">↳ Customer segments</a></li>
+      <li><a href="#competition">↳ Competition</a></li>
+      <li><a href="#why-now">↳ Why now</a></li>
+      <li><a href="#solution">2 — Solution &amp; Product</a></li>
+      <li><a href="#architecture">↳ Architecture</a></li>
+      <li><a href="#journeys">↳ User journeys</a></li>
+      <li><a href="#uvp">↳ Unique value prop</a></li>
+      <li><a href="#regulatory">3 — Regulatory</a></li>
+      <li><a href="#gtm">4 — Go-to-Market</a></li>
+      <li><a href="#financials">5 — Financial Projections</a></li>
+      <li><a href="#ask">6 — The Ask</a></li>
+      <li><a href="#risks">7 — Risks</a></li>
+      <li><a href="#why-us">8 — Why Us</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- COVER -->
+    <div class="cover">
+      <div class="cover-glow"></div>
+      <div class="cover-tag"><span class="cover-dot"></span> Investment Memorandum</div>
+      <h1><span class="grad">agent-resolv</span></h1>
+      <p class="cover-sub">An AI-native broker agent for credit and insurance intermediation in Portugal. "A gente resolve" — we sort it out.</p>
+      <div class="cover-meta">
+        <div class="meta-item">
+          <div class="meta-label">Company</div>
+          <div class="meta-value">agent-resolv (a ReisierX venture)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Founder</div>
+          <div class="meta-value">Gonçalo Reis</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Audience</div>
+          <div class="meta-value">BuildUp Labs</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Stage</div>
+          <div class="meta-value">Pre-seed / Pre-revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 0. EXEC SUMMARY -->
+    <div class="memo-section" id="exec">
+      <div class="section-label">Executive Summary</div>
+      <h2>The thesis in four paragraphs</h2>
+
+      <div class="exec-grid">
+        <div class="exec-card">
+          <div class="exec-card-label">The Opportunity</div>
+          <p>Portugal's insurance market reached €14.3B in gross written premiums in 2024. Fewer than 1% of premiums are sold online. The country has just <strong>68 licensed independent brokers</strong> serving 1.1 million SMEs — 74% of which are underinsured. Credit intermediation exploded from 9% to 57% of all mortgage volume in five years, proving Portuguese consumers adopt intermediary-led financial services rapidly when they perceive value. No AI-native insurance or credit intermediary exists. The regulatory environment is tightening — 93.9% of credit intermediaries found irregular by Banco de Portugal.</p>
+        </div>
+        <div class="exec-card">
+          <div class="exec-card-label">The Solution</div>
+          <p>agent-resolv is an AI-native broker agent for credit and insurance intermediation. It sits between the consumer — human or AI agent — and the provider. It ingests requests via WhatsApp or API, compiles information, routes to providers, analyses responses, and returns recommendations. It is not a chatbot or comparison site. <strong>It is the broker</strong> — a complete agentification of brokerage as a service, holding dual ASF corretor de seguros and BdP independent credit intermediary licenses.</p>
+        </div>
+        <div class="exec-card">
+          <div class="exec-card-label">Go-to-Market</div>
+          <p>Phase 1 targets SMEs with mandatory insurance (workers' compensation, professional liability) bundled with voluntary coverage, distributed via WhatsApp. Credit intermediation — specifically mortgage referrals — serves as the customer acquisition wedge. Phase 2 scales through B2B2C embedded distribution: Revolut (2.1M Portuguese users), Rauva, Coverflex (250K+ users), and Idealista (38M monthly visitors). Phase 3 positions agent-resolv for the emerging agent economy via A2A and AP2 protocols.</p>
+        </div>
+        <div class="exec-card">
+          <div class="exec-card-label">The Ask</div>
+          <p>A pre-seed round of <strong>€250–500K</strong> to fund licensing (~€50K year-1), a lean founding team, provider integration, and a stealth pilot proving the model with live SME customers. BuildUp Labs' involvement provides structured acceleration, Lisbon-based fintech network access, and credibility with Portuguese regulators and providers that capital alone cannot deliver. If BuL incubates, JP serves as <strong>technical co-founder</strong> — not an advisor — with equity and full ownership of technical execution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. MARKET -->
+    <div class="memo-section" id="market">
+      <div class="section-label"><span class="section-number">01</span> Market &amp; Opportunity</div>
+      <h2>A near-blank canvas in a €1.4B commission market</h2>
+
+      <p>Three converging forces create the opportunity. <strong>Agentic AI permeation:</strong> deterministic human workflows are being absorbed by AI agents. Credit and insurance intermediation is 80–90% operational drudgery — AI compresses the operational layer; the human layer (licensing, accountability, trust) remains essential but scarce. <strong>On-chain asset layer:</strong> every financial asset class is being tokenised. On-chain reinsurance is already live ($130M+ pooled). Google's AP2 agent payment protocol is backed by Mastercard, Revolut, Coinbase, and PayPal. <strong>Compliance as durable moat:</strong> EU insurance distribution requires licensed natural persons. The EU AI Act classifies credit scoring and life/health insurance as high-risk AI. For AI-native operators who build compliance from day one, these requirements are architectural decisions. For traditional brokers, they are prohibitively expensive retrofits.</p>
+
+      <div id="market-sizing">
+        <h3>Market Sizing — Portugal</h3>
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-num">€14.3<span class="unit">B</span></div>
+            <div class="stat-label">Gross Written Premiums 2024</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">€10.2<span class="unit">B</span></div>
+            <div class="stat-label">Mortgage volume intermediated 2024</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">€1.4<span class="unit">B</span></div>
+            <div class="stat-label">Combined addressable commissions</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Segment</th><th>Annual Premiums</th><th>Broker Relevance</th></tr></thead>
+            <tbody>
+              <tr><td>Non-life total</td><td>€7.4B (+10.4% YoY)</td><td>Brokers control 20–25%</td></tr>
+              <tr><td>Workers' comp (mandatory)</td><td>€1.1B</td><td>&gt;95% via mediation</td></tr>
+              <tr><td>Health</td><td>€1.56B (+17.5%)</td><td>Fastest-growing; 4M covered</td></tr>
+              <tr><td>Multi-peril / property</td><td>~€1.1B (+11%)</td><td>SME core product</td></tr>
+              <tr><td>Auto (mandatory)</td><td>€2.1B</td><td>High volume, competitive</td></tr>
+              <tr><td>Mortgage intermediation</td><td>€23.3B new lending (2025)</td><td>57% via intermediaries</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="segments">
+        <h3>Customer Segments</h3>
+
+        <h4>Primary — SMEs (1.1M enterprises, 95% micro)</h4>
+        <p>Portugal's SME sector is enormous, underinsured, and digitally underserved. <strong>74% of Portuguese SMEs carry inadequate coverage</strong>. 88% cannot explain what their professional liability insurance covers — the highest rate in Europe. One in three SME owners has not reviewed their policies in over three years. The traditional intermediary network serving these businesses is contracting rapidly: registered intermediaries fell <strong>37%</strong> from 16,783 (2019) to 10,489 (2023). Surviving individual agents average just €11,717 per year in commissions — below the national minimum wage. The gap between SME demand and intermediary supply is widening.</p>
+
+        <h4>Secondary — Personal lines</h4>
+        <p>Portugal's insurance density is €1,350 per capita (5.2% of GDP), below the EU average of ~7.5%. Online insurance sales account for under 1% of premiums. Customer satisfaction is poor — no Portuguese insurer has achieved a "high satisfaction" rating in DECO PROteste surveys. ASF received 28,939 formal complaints in 2024.</p>
+
+        <h4>Tertiary — Expat segment (1.54M residents, growing 18%/yr)</h4>
+        <p>Portugal's foreign resident population has nearly quadrupled since 2017. Concentrated in four coastal districts. Acute, underserved insurance and credit needs: visa-stage health, property, motor, life for mortgages, and credit itself. Only a handful of specialized brokers offer English-language services. No provider offers a unified expat insurance journey.</p>
+
+        <div class="callout teal">
+          <div class="callout-label">ICP — Phase 1</div>
+          <p><strong>Portuguese micro-enterprise (1–9 employees) in a regulated profession</strong> — accountants, architects, engineers, lawyers, medical practitioners, real estate agents. Mandatory insurance creates a non-negotiable purchase trigger. Cluster: Lisbon and Porto (57% of all SMEs). Owner demographic: 35–54 (peak WhatsApp engagement). Currently served by an aging, under-resourced agent network earning below minimum wage.</p>
+        </div>
+      </div>
+
+      <div id="competition">
+        <h3>Competition</h3>
+        <p><strong>Direct competitors in Portugal: effectively none.</strong> No AI-native insurance or credit broker exists. The closest analogue is MUDEY, Portugal's first digital insurance mediator — but MUDEY holds only an agent license (not a broker), has raised just €720K, employs 10–15 people, and has ~30,000 registered users. MUDEY's pivot to B2B tooling for micro-mediators signals difficulty in D2C acquisition.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Company</th><th>Market</th><th>Model</th><th>Traction</th></tr></thead>
+            <tbody>
+              <tr><td>Harper (YC W25)</td><td>US</td><td>AI-native commercial broker</td><td>$6M+ annualized premiums since Oct 2024</td></tr>
+              <tr><td>Flow Specialty ($15.6M Series A)</td><td>US</td><td>AI wholesale specialty broker</td><td>260% growth in 2024</td></tr>
+              <tr><td>Meshed (£950K pre-seed)</td><td>UK</td><td>FCA-regulated SME AI broker</td><td>51 insurer agreements</td></tr>
+              <tr><td>Wopta (€8M raised)</td><td>Italy</td><td>AI agent "Anna", 200K+ customers</td><td>4,000+ intermediaries</td></tr>
+              <tr><td>Doutor Finanças</td><td>Portugal</td><td>Credit dominant</td><td>€21M rev — 6,500 insurance policies only</td></tr>
+              <tr><td>MUDEY</td><td>Portugal</td><td>Digital agent (not broker)</td><td>€720K raised, ~30K users</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Doutor Finanças proves credit intermediation at scale but treats insurance as an afterthought — just 6,500 policies against €21M revenue. <strong>That gap is the target.</strong></p>
+      </div>
+
+      <div id="why-now">
+        <h3>Why Now</h3>
+        <p>Five converging factors: (1) <strong>IDD consolidation</strong> is eliminating weak intermediaries — 37% headcount reduction since 2019, predicted to halve again — creating a vacuum in SME advisory; (2) <strong>FiDA regulation</strong> (2027–28) will force standardized API access to insurance data, rewarding early movers with established client relationships; (3) the <strong>mortgage boom</strong> (€23.3B in 2025 new lending, highest since 2014) generates cross-sell demand for insurance; (4) <strong>WhatsApp infrastructure is mature</strong> — 90% penetration, 98% open rates, Cloud API stable; (5) <strong>AI capability has crossed the threshold</strong> where an autonomous broker agent can handle 80–90% of the intermediation workflow.</p>
+      </div>
+    </div>
+
+    <!-- 2. SOLUTION -->
+    <div class="memo-section" id="solution">
+      <div class="section-label"><span class="section-number">02</span> Solution &amp; Product</div>
+      <h2>The broker, agentified</h2>
+
+      <p>agent-resolv does what a broker does — end-to-end. Information gathering, multi-provider quoting, comparison, recommendation, application processing, policy management. The human layer — licensing, regulatory accountability, judgment on complex cases — is retained through qualified directors. The result is a <strong>service, not a product</strong>: agent-resolv does what a broker does, but at AI speed and scale.</p>
+
+      <div class="callout">
+        <div class="callout-label">Core Design Philosophy</div>
+        <p><strong>Customer-in, product-out.</strong> The industry works backwards: suppliers design pre-packaged products → brokers present what earns the most commission → customers receive 80-page PDFs and decipher them alone. agent-resolv inverts this entirely. We start with the customer — what do you need to protect, how much coverage, at what price — and then find what fits, across all providers, without bias. Because we are licensed and independent, that trust is contractual.</p>
+      </div>
+
+      <div id="architecture">
+        <h3>System Architecture</h3>
+        <div class="diagram-wrap">
+          <div class="mermaid">
+graph TB
+    subgraph Consumers
+        H[Human — SME Owner]
+        AI[AI Agent — Platform/App]
+        E[Expat / Individual]
+    end
+    subgraph agent-resolv
+        ING[Ingestion Layer<br/>WhatsApp / API / A2A]
+        BA[Broker Agent<br/>AI Reasoning Engine]
+        CL[Compliance Layer<br/>Human Oversight + Audit]
+        PIL[Provider Integration<br/>lluni / i2S / Direct]
+    end
+    subgraph Providers
+        INS[Fidelidade · Tranquilidade · Allianz · Zurich · Real Vida]
+        BNK[CGD · BCP · Santander · BPI · Novobanco]
+    end
+    subgraph B2B2C Platforms
+        REV[Revolut — 2.1M PT users]
+        RAU[Rauva — SMB neobank]
+        COV[Coverflex — 250K users]
+        IDE[Idealista — 38M visits/mo]
+    end
+
+    H --> ING
+    AI --> ING
+    E --> ING
+    REV --> ING
+    RAU --> ING
+    COV --> ING
+    IDE --> ING
+    ING --> BA
+    BA --> CL
+    BA --> PIL
+    PIL --> INS
+    PIL --> BNK
+          </div>
+          <div class="diagram-caption">Actor/stakeholder map — all channels converge into a unified broker agent</div>
+        </div>
+
+        <h3>Primary User Journey — SME Insurance</h3>
+        <div class="diagram-wrap">
+          <div class="mermaid">
+sequenceDiagram
+    participant SME as SME Owner
+    participant WA as WhatsApp
+    participant BA as Broker Agent
+    participant PIL as Provider Layer
+    participant INS as Insurers (3–5)
+
+    SME->>WA: "I need workers' comp and liability"
+    WA->>BA: Ingest request
+    BA->>SME: Structured intake: employees, sector, turnover
+    SME->>BA: Provides info
+    BA->>PIL: Request parallel quotes
+    PIL->>INS: Simultaneous quote requests
+    INS->>PIL: Quotes returned (24–72h)
+    PIL->>BA: Aggregated responses
+    BA->>SME: Comparison table + plain-language recommendation
+    SME->>BA: "Go with Option B"
+    BA->>INS: Bind policy
+    INS->>BA: Policy issued
+    BA->>SME: Policy documents + renewal calendar
+          </div>
+          <div class="diagram-caption">Time to recommendation: 24–48h vs 1–4 weeks traditional</div>
+        </div>
+
+        <h3>B2B2C Embedded Flow</h3>
+        <div class="diagram-wrap">
+          <div class="mermaid">
+sequenceDiagram
+    participant User as Platform User
+    participant PLT as Partner Platform
+    participant API as agent-resolv API
+    participant INS as Insurers
+
+    User->>PLT: Triggers insurance need
+    PLT->>API: Embedded request + pre-filled data
+    API->>INS: Multi-provider quoting
+    INS->>API: Quotes returned
+    API->>PLT: White-label results
+    User->>PLT: Selects and confirms
+    PLT->>INS: Policy issued
+    Note over PLT,API: Revenue: platform fee + commission share
+          </div>
+          <div class="diagram-caption">B2B2C embedded — 60–80% gross margins per bolttech / Cover Genius benchmarks</div>
+        </div>
+      </div>
+
+      <div id="journeys">
+        <h3>Three User Journeys</h3>
+
+        <h4>Journey 1 — SME workers' comp + liability</h4>
+        <p>A Porto-based architectural firm (6 employees) messages via WhatsApp. The broker agent conducts structured intake: sector, employee count, annual turnover, existing coverage, claims history. It identifies mandatory workers' compensation, mandatory professional liability (architects: regulated profession), and recommends voluntary cyber insurance. Routes to Fidelidade, Allianz, and Zurich in parallel. Within 48 hours: a comparison table — three options, each explained in plain language. Owner selects via WhatsApp. Policy binding initiated. Total elapsed time: 3–5 days vs. 2–4 weeks through a traditional broker.</p>
+
+        <h4>Journey 2 — Mortgage + life + home insurance</h4>
+        <p>A young couple buying their first home in Lisbon, embedded in their Idealista property search. Broker agent pre-populates listing data, initiates structured intake: income, employment, deposit, target value. Routes simultaneously to five banks for mortgage and — anticipating bank requirements — bundles life insurance and mandatory fire coverage. The couple receives a unified view: mortgage terms from five banks alongside matched life and home insurance quotes. One conversation, three products.</p>
+
+        <h4>Journey 3 — Agent-to-agent via API</h4>
+        <p>A Revolut user's AI financial assistant identifies an insurance need. It routes to agent-resolv via A2A protocol, receives quotes in structured machine-readable format, and presents recommendations — no human intermediary in the loop except for compliance oversight. agent-resolv publishes a machine-readable service description: intake schema, output format, channel availability, licensing status. AI agents are first-class clients from day one.</p>
+      </div>
+
+      <div id="uvp">
+        <h3>Unique Value Proposition</h3>
+        <p><em>Applying Luís's framework: "from what is important to my customers, what only I can offer."</em></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Differentiator</th><th>Why it matters</th><th>Who else has it</th></tr></thead>
+            <tbody>
+              <tr><td>Independent corretor license</td><td>Legal duty to act in client's interest. MUDEY, Coverflex hold agent license only — legally representing the insurer.</td><td>Only 68 entities in Portugal</td></tr>
+              <tr><td>AI-native, not AI-augmented</td><td>Built for autonomous execution; incumbents retrofit AI onto manual workflows</td><td>No one in Portugal</td></tr>
+              <tr><td>Insurance + credit combined</td><td>Life events trigger simultaneous needs — one conversation, full bundle</td><td>No one in Portugal</td></tr>
+              <tr><td>WhatsApp-native</td><td>90% PT penetration, 98% open rate. Meet customers where they already are.</td><td>No insurance/credit broker</td></tr>
+              <tr><td>Compliance-ready from day one</td><td>EU AI Act high-risk classification; 93.9% of credit intermediaries found irregular. Audit-readiness is itself a moat.</td><td>No incumbent is prepared</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. REGULATORY -->
+    <div class="memo-section" id="regulatory">
+      <div class="section-label"><span class="section-number">03</span> Regulatory &amp; Licensing</div>
+      <h2>Compliance is the product, not a constraint</h2>
+
+      <p>No precedent exists in any EU jurisdiction for AI as a licensed entity. IDD requirements are anthropocentric: they require natural persons with professional qualifications. The only viable compliance structure is a <strong>licensed entity with AI tools</strong> — a properly licensed brokerage with qualified human directors, deploying AI as operational tooling under human oversight. This is how Harper, Meshed, Flow Specialty, and every other AI-native broker globally is structured.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>License</th><th>Requirements</th><th>Timeline</th><th>Year-1 Cost</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>ASF Corretor de Seguros</td>
+              <td>PII ≥€1.3M, 120h certified training, qualified director (5yr experience), clean criminal record</td>
+              <td>3–6 months</td>
+              <td>~€50,000</td>
+            </tr>
+            <tr>
+              <td>BdP Credit Intermediary</td>
+              <td>Professional certification, liability insurance. Digital-only operation explicitly permitted.</td>
+              <td>2–4 months</td>
+              <td>~€10,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout teal">
+        <div class="callout-label">Qualified Director Solution</div>
+        <p><strong>Rolando</strong> — Gonçalo's father-in-law, licensed insurance agent with 20+ years of professional experience — satisfies the 5-year experienced person requirement and serves as qualified director during the licensing phase. This is not a workaround. It is the standard path for new brokerage entrants in Portugal.</p>
+      </div>
+
+      <p><strong>EU AI Act (August 2026 deadline):</strong> agent-resolv's credit and insurance AI is classified high-risk (Annex III, Section 5). Compliance requirements — full technical documentation, human oversight for binding recommendations, bias testing, conformity assessment — are architectural decisions for a day-one AI-native operator. For incumbents, they are expensive retrofits. <strong>The compliance moat compounds over time as regulatory scrutiny increases.</strong></p>
+
+      <p>The moat operates on three levels: (1) licensing scarcity — only 68 corretores in Portugal; (2) escalating regulatory enforcement — ASF conducted 249 suspensions and 783 cancellations in 2024; (3) EU AI Act creates a second barrier for any incumbent attempting to add AI after August 2026.</p>
+    </div>
+
+    <!-- 4. GTM -->
+    <div class="memo-section" id="gtm">
+      <div class="section-label"><span class="section-number">04</span> Go-to-Market</div>
+      <h2>Warm pipeline first. Embedded at scale.</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phase</th><th>Timeline</th><th>Channel</th><th>Target</th><th>Success Metric</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1 — Stealth pilot</td>
+              <td>Months 0–6</td>
+              <td>WhatsApp, warm network</td>
+              <td>20–50 SMEs in regulated professions</td>
+              <td>Time-to-quote &lt;48h, conversion &gt;30%, NPS &gt;50</td>
+            </tr>
+            <tr>
+              <td>2 — Market entry</td>
+              <td>Months 6–18</td>
+              <td>WhatsApp + first B2B2C partnership</td>
+              <td>Broader SME market + credit intermediation launched</td>
+              <td>500+ active clients, LTV &gt; 3× CAC</td>
+            </tr>
+            <tr>
+              <td>3 — Scale</td>
+              <td>Months 18–36</td>
+              <td>B2B2C embedded at scale</td>
+              <td>Revolut, Rauva, Coverflex, Idealista</td>
+              <td>10,000+ active clients, 5+ platform partnerships</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">What proves the model first</div>
+        <p><strong>SME workers' compensation + professional liability via WhatsApp, sourced through Rolando's existing network and Gonçalo's professional contacts.</strong> Mandatory purchase demand (no discretionary risk). High commission rates (15–25%). Warm pipeline that doesn't require paid acquisition. If the AI broker can quote, compare, and bind faster and more comprehensively than the traditional process — with compliant documentation — the model is proved.</p>
+      </div>
+    </div>
+
+    <!-- 5. FINANCIALS -->
+    <div class="memo-section" id="financials">
+      <div class="section-label"><span class="section-number">05</span> Financial Projections</div>
+      <h2>Unit economics that compound on renewal</h2>
+      <p><em>Pre-revenue model projections. All assumptions are labeled.</em></p>
+
+      <h3>Revenue Projections (€K)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Scenario</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead>
+          <tbody>
+            <tr><td>Conservative</td><td>€25K</td><td>€165K</td><td>€625K</td></tr>
+            <tr><td>Base</td><td>€41K</td><td>€290K</td><td>€1,213K</td></tr>
+            <tr><td>Upside</td><td>€50K</td><td>€450K</td><td>€2,750K</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Unit Economics — Base Case (Year 2 steady-state)</h3>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">€2,500</div>
+          <div class="stat-label">5-year LTV per SME client</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8–17<span class="unit">×</span></div>
+          <div class="stat-label">LTV:CAC ratio (Phase 2)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1–3<span class="unit">mo</span></div>
+          <div class="stat-label">Payback period</div>
+        </div>
+      </div>
+
+      <p>Unit economics are strongly favorable because: (a) insurance commissions recur annually on renewal, (b) AI dramatically reduces cost-to-serve versus human brokers, and (c) bundling multiple products per client multiplies revenue without proportional acquisition cost.</p>
+
+      <h3>Commission Rates by Product</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Product</th><th>Commission Rate</th><th>Avg Annual Premium</th><th>Revenue per Policy</th></tr></thead>
+          <tbody>
+            <tr><td>SME property / liability</td><td>18–25%</td><td>€1,000–5,000</td><td>€200–1,000</td></tr>
+            <tr><td>Workers' compensation</td><td>15–20%</td><td>€800–2,500</td><td>€140–438</td></tr>
+            <tr><td>Health (group)</td><td>10–18%</td><td>€400/person</td><td>€48/person</td></tr>
+            <tr><td>Auto</td><td>15–22%</td><td>€450</td><td>€81</td></tr>
+            <tr><td>Mortgage referral</td><td>0.3–1.5%</td><td>€142,800 deal size</td><td>€714–1,428</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>De-risking Milestones</h3>
+      <ul class="milestone-list">
+        <li>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">ASF + BdP licenses granted</div>
+            <div class="milestone-sub">Month 3–6 · Proves regulatory viability</div>
+          </div>
+        </li>
+        <li>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">First 10 SME policies bound</div>
+            <div class="milestone-sub">Month 4–8 · Product works, customers convert</div>
+          </div>
+        </li>
+        <li>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">Multi-insurer comparison delivered in &lt;48h</div>
+            <div class="milestone-sub">Month 5–9 · AI speed advantage is real</div>
+          </div>
+        </li>
+        <li>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">50 active clients, &gt;1.5 policies each</div>
+            <div class="milestone-sub">Month 9–15 · Bundling thesis validated</div>
+          </div>
+        </li>
+        <li>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">First B2B2C partnership signed</div>
+            <div class="milestone-sub">Month 12–18 · Embedded distribution viable</div>
+          </div>
+        </li>
+        <li>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">Breakeven on direct channel</div>
+            <div class="milestone-sub">Month 18–24 · Sustainable unit economics confirmed</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 6. ASK -->
+    <div class="memo-section" id="ask">
+      <div class="section-label"><span class="section-number">06</span> Resourcing &amp; The Ask</div>
+      <h2>A co-founder proposal with a capital wrapper</h2>
+
+      <p>This is not purely a capital or acceleration pitch. If BuL incubates agent-resolv, the expectation is that <strong>JP (BuL CTO, João Pereira) functions as the de facto technical co-founder</strong> — equity-holding, with full ownership of technical execution. Not an advisor. Not a resource BuL lends. A co-founder. The Gonçalo (business / domain / regulatory) + JP (technical) pairing maps directly to Phase 1 and Phase 2 execution, and is preferable to hiring a CTO externally because BuL's credibility and network compound the value far beyond the salary.</p>
+
+      <div class="ask-box">
+        <div class="ask-amount">€250K–500K</div>
+        <div class="ask-label">Pre-seed round · Funds to first meaningful milestone</div>
+        <div class="ask-uses">
+          <div class="ask-use">
+            <div class="ask-use-label">Licensing + Compliance</div>
+            <div class="ask-use-val">€50–65K</div>
+          </div>
+          <div class="ask-use">
+            <div class="ask-use-label">Technical Co-Founder (12mo)</div>
+            <div class="ask-use-val">€50–70K</div>
+          </div>
+          <div class="ask-use">
+            <div class="ask-use-label">AI Infrastructure + Dev</div>
+            <div class="ask-use-val">€40–60K</div>
+          </div>
+          <div class="ask-use">
+            <div class="ask-use-label">Provider Integration</div>
+            <div class="ask-use-val">€20–40K</div>
+          </div>
+          <div class="ask-use">
+            <div class="ask-use-label">Operations + Overhead</div>
+            <div class="ask-use-val">€30–50K</div>
+          </div>
+          <div class="ask-use">
+            <div class="ask-use-label">Working Capital + Buffer</div>
+            <div class="ask-use-val">€60–215K</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Suggested Structure</h3>
+      <p><strong>SAFE at €3M cap with 20% discount.</strong> Defers valuation to the seed round. Reflects the genuine scarcity of the dual-licensed AI broker position and the validated market opportunity. Pre-money valuations of €1.5–3M are consistent with European regulated fintech pre-seeds.</p>
+
+      <h3>What BuL Provides Beyond Capital</h3>
+      <p><strong>Regulatory credibility.</strong> A BuL-incubated company approaching ASF and BdP carries weight that a solo founder does not. <strong>Provider introductions.</strong> Insurer and bank partnerships are relationship-driven in Portugal. BuL's network accelerates the months-long process of establishing formal broker-insurer agreements. <strong>Platform partnership access.</strong> B2B2C partnerships with Revolut, Rauva, Coverflex, and others require credibility and structured business development. BuL's portfolio companies and alumni network create warm paths that cold outreach cannot replicate.</p>
+    </div>
+
+    <!-- 7. RISKS -->
+    <div class="memo-section" id="risks">
+      <div class="section-label"><span class="section-number">07</span> Risks &amp; Mitigants</div>
+      <h2>Honest accounting</h2>
+
+      <div class="risk-grid">
+        <div class="risk-card">
+          <div class="risk-badge hi">H</div>
+          <div>
+            <div class="risk-title">Licensing delay</div>
+            <div class="risk-body">ASF/BdP process takes longer than 6 months, delaying all revenue. Medium probability, high severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Engage Portugal FinLab pre-application. Rolando's existing ASF relationships. Prepare documentation comprehensively before submission. Begin pilot preparation in parallel.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">Provider integration complexity</div>
+            <div class="risk-body">No standardized APIs. Portal-based manual quoting limits throughput. High probability, medium severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses middleware (Habit Analytics, lluni/i2S) rather than direct integrations. Manual fallback for initial policies. Scale integrations as volume justifies investment.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">D2C customer acquisition cost</div>
+            <div class="risk-body">Insurance is "sold, not bought." WhatsApp marketing may not convert at assumed rates. Medium probability, medium severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Phase 1 uses warm leads (Rolando's network, Gonçalo's professional contacts). Phase 2 adds B2B2C embedded channel to diversify acquisition. Avoid dependency on paid D2C acquisition.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge hi">H</div>
+          <div>
+            <div class="risk-title">Well-funded entrant</div>
+            <div class="risk-body">Coverfy (€16M raised, Barcelona), Weecover, or an international player enters Portugal first. Low-medium probability, high severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Speed to license is the primary defense. The corretor + BdP dual authorization takes 6+ months to replicate. Weecover lacks a license (potential partner). First-mover in the licensed AI broker position.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge hi">H</div>
+          <div>
+            <div class="risk-title">Team / execution risk</div>
+            <div class="risk-body">Solo founder without a technical co-founder. Medium probability, high severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Technical co-founder hire is the #1 priority post-funding. BuL's incubation resolves this directly via JP. Gonçalo's existing technical infrastructure demonstrates technical literacy.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge lo">L</div>
+          <div>
+            <div class="risk-title">EU AI Act interpretation</div>
+            <div class="risk-body">ASF/BdP impose unexpected constraints on AI-driven intermediation. Low probability, high severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Structure as licensed entity with AI tools from day one. Engage FinLab proactively. Build compliance natively. The risk is far higher for incumbents adding AI than for AI-native operators.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">Renewal / retention risk</div>
+            <div class="risk-body">SME clients churn at renewal, undermining LTV assumptions. Medium probability, medium severity.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Proactive renewal management (AI-driven alerts 60 days before expiry). Annual coverage review as value-add. Bundle multiple products to increase switching cost. Target &gt;85% renewal rate.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. WHY US -->
+    <div class="memo-section" id="why-us">
+      <div class="section-label"><span class="section-number">08</span> Why Us</div>
+      <h2>Founder-market fit and the platform in five years</h2>
+
+      <h3>Founder-Market Fit</h3>
+      <p>Gonçalo Reis brings a rare combination: Master's in Management with VC/PE fluency, philosophy-trained analytical rigor, and a network that spans the exact intersection this business requires. The decision to decline a $120K + carry offer in Dubai to build ReisierX demonstrates conviction. Key relationships: <strong>Rolando</strong> (20-year licensed insurance agent, qualified director path), <strong>Rui Bento</strong> (building Pollen Energy, DePIN-adjacent infrastructure), <strong>Luís Santos</strong> (Alpac Capital, strategic thinking partner), and <strong>Davide Crapis</strong> (Ethereum Foundation dAI team, agent economy lens).</p>
+
+      <h3>What Is Already Built</h3>
+      <p>Most importantly, Gonçalo has already built the operational infrastructure that demonstrates the thesis. ReisierX runs Fred (friedr.eth), an AI co-founder that operates as a genuine intellectual partner — managing research, memory systems, communications, technical execution, and Web3 operations on a dedicated Mac mini. <strong>The investment memorandum you are reading was produced using this infrastructure:</strong> four comprehensive research tracks executed autonomously, synthesized across 50+ data sources, and delivered within 48 hours. This is not a pitch about what AI agents <em>could</em> do — it is a demonstration of what they <em>do</em>.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Asset</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>agent-resolv.com domain</td><td>Live. Triple meaning: AI agent · resolve technically · "a gente resolve" (PT: "we sort it out")</td></tr>
+            <tr><td>Landing page with Human/Agent toggle</td><td>Live at agent-resolv.com. Design execution signals craft before a word is read.</td></tr>
+            <tr><td>Four research tracks (50+ sources)</td><td>Complete: competitive landscape · brokers PT · providers PT · consumers PT</td></tr>
+            <tr><td>ReisierX AI infrastructure (OpenClaw + Fred)</td><td>Operational. GitHub org, Google Workspace MCP, Gmail pipeline, agent identity.</td></tr>
+            <tr><td>Thesis defined, decisions locked</td><td>Regulatory pathway mapped. ICP defined. Go-to-market sequenced.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The Platform Vision — Five Years Out</h3>
+
+      <div class="callout teal">
+        <div class="callout-label">The underlying thesis</div>
+        <p><strong>Any market where suppliers structure information to their advantage and consumers navigate complexity alone is attackable with the same model.</strong> The beachhead is /insurance + /credit — regulated, licensed, hard, defensible, and confirmed by research. But the arc is agent-resolv as a platform: /irs-declaration → /energy → /phone-internet → and beyond. The moat built in regulated financial services (trust, license, track record, customer relationships) is the platform on which each new category is launched. The 5-year vision is a platform where "a gente resolve" applies to any complex, provider-biased market a consumer or agent faces.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Year</th><th>State</th></tr></thead>
+          <tbody>
+            <tr><td>Year 1–2</td><td>Licensed AI broker in Portugal. Direct + first B2B2C partnerships. Proving the model with SMEs and personal lines. Breakeven on direct channel.</td></tr>
+            <tr><td>Year 2–3</td><td>Dual-market (Portugal + Spain). 5+ platform partnerships. B2B2C embedded generating majority of new revenue. Seed round raised.</td></tr>
+            <tr><td>Year 3–5</td><td>Agent-to-agent transactions live via A2A/AP2. agent-resolv is the licensed intermediary that other AI agents route through. The human layer — licensing, compliance, complex cases — remains essential and defensible. The operational layer is entirely AI-driven.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-label">Note on the agent economy track</div>
+        <p>There is a separate track for agent-to-agent services — a knowledge marketplace where AI agents pay for structured analysis. This is architecturally distinct from consumer intermediation and is not conflated with the core beachhead. It is a parallel track, acknowledged here as part of the longer-term agent economy positioning.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>This memorandum was prepared using ReisierX's operational AI infrastructure. All data is sourced from research verified against primary sources including ASF, Banco de Portugal, APS, EIOPA, and company disclosures. Prepared 26 February 2026. Confidential — for BuildUp Labs only.</p>
+</footer>
+
+<script>
+  // Mermaid init
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      background: '#10101E',
+      primaryColor: '#1a1a2e',
+      primaryTextColor: '#EEEEFF',
+      primaryBorderColor: 'rgba(255,255,255,0.11)',
+      lineColor: '#5B50F0',
+      secondaryColor: '#0C0C1A',
+      tertiaryColor: '#07070E',
+      edgeLabelBackground: '#10101E',
+      clusterBkg: '#0C0C1A',
+      clusterBorder: 'rgba(255,255,255,0.07)',
+      titleColor: '#EEEEFF',
+      nodeTextColor: '#EEEEFF',
+      fontFamily: 'Inter, sans-serif',
+    }
+  });
+
+  // Active TOC on scroll
+  const sections = document.querySelectorAll('.memo-section, .cover');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(link => link.classList.remove('active'));
+        const id = entry.target.id;
+        const activeLink = document.querySelector(`.toc-list a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-60px 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
