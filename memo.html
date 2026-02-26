@@ -567,6 +567,7 @@ graph TB
     end
     subgraph agent-resolv
         ING[Unified Intake Abstraction<br/>WhatsApp · Telegram · Email · Voice · Web · API/A2A]
+        ACC[Customer Account<br/>Profile · Policies · Preferences · Opportunities]
         BA[Broker Agent<br/>AI Reasoning Engine]
         CL[Compliance Layer<br/>Human Oversight + Audit]
         PIL[Provider Integration<br/>lluni / i2S / Direct]
@@ -589,11 +590,13 @@ graph TB
     RAU --> ING
     COV --> ING
     IDE --> ING
-    ING --> BA
+    ING --> ACC
+    ACC --> BA
     BA --> CL
     BA --> PIL
     PIL --> INS
     PIL --> BNK
+    PIL --> ACC
           </div>
           <div class="diagram-caption">Actor/stakeholder map — all channels normalise to the same structured intake before reaching the broker agent</div>
         </div>
@@ -604,23 +607,27 @@ graph TB
 sequenceDiagram
     participant SME as SME Owner
     participant CH as Channel<br/>(Email · Voice · WhatsApp · Web)
+    participant ACC as Customer Account
     participant BA as Broker Agent
     participant PIL as Provider Layer
     participant INS as Insurers (3–5)
 
     SME->>CH: "I need workers' comp and liability"
-    CH->>BA: Normalised structured request
-    BA->>SME: Structured intake: employees, sector, turnover
+    CH->>ACC: Lookup or create account
+    ACC-->>BA: Profile (new or existing customer)
+    BA->>SME: Conversational profiling:<br/>sector, employees, turnover,<br/>existing coverage, claims history
     SME->>BA: Provides info (same channel)
-    BA->>PIL: Request parallel quotes
+    ACC->>ACC: Profile saved — partial or complete
+    BA->>PIL: Request parallel quotes<br/>(profile-matched insurers)
     PIL->>INS: Simultaneous quote requests
     INS->>PIL: Quotes returned (24–72h)
     PIL->>BA: Aggregated responses
-    BA->>SME: Comparison table + plain-language recommendation
+    BA->>SME: Comparison table +<br/>plain-language recommendation
     SME->>BA: "Go with Option B"
     BA->>INS: Bind policy
     INS->>BA: Policy issued
     BA->>SME: Policy documents + renewal calendar
+    BA->>ACC: Account updated:<br/>policy · preferences · next renewal
           </div>
           <div class="diagram-caption">Time to recommendation: 24–48h vs 1–4 weeks traditional</div>
         </div>
@@ -632,15 +639,19 @@ sequenceDiagram
     participant User as Platform User
     participant PLT as Partner Platform
     participant API as agent-resolv API
+    participant ACC as Customer Account
     participant INS as Insurers
 
     User->>PLT: Triggers insurance need
     PLT->>API: Embedded request + pre-filled data
+    API->>ACC: Lookup or create account<br/>(pre-fill profile from platform data)
+    ACC-->>API: Profile ready
     API->>INS: Multi-provider quoting
     INS->>API: Quotes returned
     API->>PLT: White-label results
     User->>PLT: Selects and confirms
     PLT->>INS: Policy issued
+    API->>ACC: Account updated: policy · channel · preferences
     Note over PLT,API: Revenue: platform fee + commission share
           </div>
           <div class="diagram-caption">B2B2C embedded — 60–80% gross margins per bolttech / Cover Genius benchmarks</div>
@@ -663,14 +674,21 @@ sequenceDiagram
         </table>
       </div>
 
+      <h3>Customer Profiling &amp; The Account</h3>
+      <div class="callout teal">
+        <div class="callout-label">Core Architecture — Not Plumbing</div>
+        <p><strong>Profiling is a first-class product step.</strong> Before the broker agent routes to any provider, it builds a structured customer profile: business type, sector, employee count, turnover, existing coverage, claims history, budget. This is conversational and channel-adaptive — spoken on a voice call, message-by-message on WhatsApp, async on email. Partial profiles are saved to the account; intake resumes exactly where it left off on the next contact.</p>
+        <p style="margin-top:0.75rem"><strong>Every customer gets a persistent account on first contact</strong> — regardless of channel. The account holds the full customer profile, current policies and credit facilities, ongoing processes, preference settings, and identified opportunities (coverage gaps, renewal dates, cross-sell moments). This is what makes omni-channel coherent: a customer who first emails and calls six months later is recognised immediately — no re-profiling. And it is the compounding asset: the broker agent gets better per customer over time; LTV multiplies with each renewal and cross-sell. No comparison site has this. No traditional broker has it structured and accessible to an AI system.</p>
+      </div>
+
       <div id="journeys">
         <h3>Three User Journeys</h3>
 
         <h4>Journey 1 — SME workers' comp + liability</h4>
-        <p>A Porto-based architectural firm (6 employees) contacts agent-resolv — via email, phone, or WhatsApp depending on their preference. The broker agent conducts structured intake: sector, employee count, annual turnover, existing coverage, claims history. It identifies mandatory workers' compensation, mandatory professional liability (architects: regulated profession), and recommends voluntary cyber insurance. Routes to Fidelidade, Allianz, and Zurich in parallel. Within 48 hours: a comparison table — three options, each explained in plain language. Owner selects via their preferred channel. Policy binding initiated. Total elapsed time: 3–5 days vs. 2–4 weeks through a traditional broker.</p>
+        <p>A Porto-based architectural firm (6 employees) contacts agent-resolv — via email, phone, or WhatsApp depending on their preference. An account is created immediately. The broker agent conducts conversational profiling: sector, employee count, annual turnover, existing coverage, claims history — channel-adaptive, no form. The profile is saved to the account; if the conversation is interrupted, it resumes exactly where it left off. The broker agent identifies mandatory workers' compensation, mandatory professional liability (architects: regulated profession), and recommends voluntary cyber insurance. Routes to Fidelidade, Allianz, and Zurich in parallel. Within 48 hours: a comparison table — three options, each explained in plain language. Owner selects via their preferred channel. Policy binding initiated. Account updated: policies recorded, renewal dates set, coverage gap analysis stored for future cross-sell. Total elapsed time: 3–5 days vs. 2–4 weeks through a traditional broker.</p>
 
         <h4>Journey 2 — Mortgage + life + home insurance</h4>
-        <p>A young couple buying their first home in Lisbon, embedded in their Idealista property search. Broker agent pre-populates listing data, initiates structured intake: income, employment, deposit, target value. Routes simultaneously to five banks for mortgage and — anticipating bank requirements — bundles life insurance and mandatory fire coverage. The couple receives a unified view: mortgage terms from five banks alongside matched life and home insurance quotes. One conversation, three products.</p>
+        <p>A young couple buying their first home in Lisbon, embedded in their Idealista property search. An account is created pre-populated with Idealista listing data. The broker agent completes the profile conversationally: income, employment, deposit, target value. Routes simultaneously to five banks for mortgage and — anticipating bank requirements — bundles life insurance and mandatory fire coverage. The couple receives a unified view: mortgage terms from five banks alongside matched life and home insurance quotes. Account updated with the full financial picture. One conversation, three products, one account.</p>
 
         <h4>Journey 3 — Agent-to-agent via API</h4>
         <p>A Revolut user's AI financial assistant identifies an insurance need. It routes to agent-resolv via A2A protocol, receives quotes in structured machine-readable format, and presents recommendations — no human intermediary in the loop except for compliance oversight. agent-resolv publishes a machine-readable service description: intake schema, output format, channel availability, licensing status. AI agents are first-class clients from day one.</p>
@@ -686,6 +704,7 @@ sequenceDiagram
               <tr><td>AI-native, not AI-augmented</td><td>Built for autonomous execution; incumbents retrofit AI onto manual workflows</td><td>No one in Portugal</td></tr>
               <tr><td>Insurance + credit combined</td><td>Life events trigger simultaneous needs — one conversation, full bundle</td><td>No one in Portugal</td></tr>
               <tr><td>Omni-channel by design</td><td>WhatsApp, Telegram, email, voice, API/A2A — unified intake abstraction. Customer chooses the front door; same broker agent regardless. No single-channel competitor can replicate this.</td><td>No insurance/credit broker</td></tr>
+              <tr><td>Persistent customer account</td><td>Profile built on first contact, enriched with every interaction. Policies, preferences, coverage gaps, renewal calendar — all in one place. Omni-channel coherent: returning customers are never re-profiled. The compounding asset that multiplies LTV over time.</td><td>No comparison site or traditional broker</td></tr>
               <tr><td>Compliance-ready from day one</td><td>EU AI Act high-risk classification; 93.9% of credit intermediaries found irregular. Audit-readiness is itself a moat.</td><td>No incumbent is prepared</td></tr>
             </tbody>
           </table>
@@ -993,7 +1012,7 @@ sequenceDiagram
           <thead><tr><th>Asset</th><th>Status</th></tr></thead>
           <tbody>
             <tr><td>agent-resolv.com domain</td><td>Live. Triple meaning: AI agent · resolve technically · "a gente resolve" (PT: "we sort it out")</td></tr>
-            <tr><td>Landing page with Human/Agent toggle</td><td>Live at agent-resolv.com. Design execution signals craft before a word is read.</td></tr>
+            <tr><td>Landing page with Human/Agent toggle</td><td>Live at agent-resolv.com. Omni-channel positioning and customer account already featured. Design execution signals craft before a word is read.</td></tr>
             <tr><td>Four research tracks (50+ sources)</td><td>Complete: competitive landscape · brokers PT · providers PT · consumers PT</td></tr>
             <tr><td>ReisierX AI infrastructure (OpenClaw + Fred)</td><td>Operational. GitHub org, Google Workspace MCP, Gmail pipeline, agent identity.</td></tr>
             <tr><td>Thesis defined, decisions locked</td><td>Regulatory pathway mapped. ICP defined. Go-to-market sequenced.</td></tr>
