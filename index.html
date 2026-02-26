@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Credit and insurance that starts with you — not with what providers want to sell. Licensed, independent, always on your side.">
-  <meta property="og:title" content="agent-resolv — Credit & Insurance, Built Around You">
-  <meta property="og:description" content="You tell us what you need. We find what fits. Licensed, independent broker agent for credit and insurance.">
+  <meta name="description" content="Services that start with you — not with what providers want to sell. Licensed, independent, always on your side.">
+  <meta property="og:title" content="agent-resolv — Services Built Around You">
+  <meta property="og:description" content="You tell us what you need. We find what fits. Licensed, independent broker agent for insurance, credit, and beyond.">
   <meta property="og:url" content="https://agent-resolv.com">
-  <title>agent-resolv — Credit & Insurance, Built Around You</title>
+  <title>agent-resolv — Services Built Around You</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -175,6 +175,29 @@
     .form-row button:hover  { opacity: 0.85; }
     .form-row button:active { transform: scale(0.97); }
     .form-note { font-size: 0.8rem; color: var(--text-3); margin-top: 0.875rem; }
+
+    /* ── SERVICE PILLS ────────────────────────────────────────────── */
+    .service-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center; margin-bottom: 1.75rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.5s 0.14s ease both;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1.1rem; border-radius: 100px;
+      font-size: 0.875rem; font-weight: 600; cursor: default;
+      border: none;
+    }
+    .pill.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+    }
+    .pill.soon {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-3);
+      border: 1px solid var(--border);
+    }
     .success-msg {
       display: none; align-items: center; justify-content: center; gap: 0.75rem;
       padding: 1rem 1.5rem;
@@ -449,7 +472,14 @@
     <div class="hero-grid"></div>
     <div class="badge"><span class="badge-dot"></span>Now accepting early access requests</div>
     <h1>You tell us<br>what you need.<br><span class="grad">We find what fits.</span></h1>
-    <p>Credit and insurance that starts with you — not with what providers want to sell. Licensed, independent, and always on your side.</p>
+    <div class="service-pills">
+      <span class="pill active">🛡️ Insurance</span>
+      <span class="pill active">💳 Credit</span>
+      <span class="pill soon">🧾 IRS Declaration</span>
+      <span class="pill soon">⚡ Energy</span>
+      <span class="pill soon">📱 Phone & Internet</span>
+    </div>
+    <p>Services that start with you — not with what providers want to sell. Licensed, independent, and always on your side.</p>
     <div class="form-wrap" id="hero-wrap">
       <div class="form-row">
         <input type="email" id="hero-email" placeholder="your@email.com">
