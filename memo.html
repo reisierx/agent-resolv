@@ -446,7 +446,7 @@
         </div>
         <div class="exec-card">
           <div class="exec-card-label">Go-to-Market</div>
-          <p>Phase 1 targets SMEs with mandatory insurance (workers' compensation, professional liability) bundled with voluntary coverage, distributed via WhatsApp. Credit intermediation — specifically mortgage referrals — serves as the customer acquisition wedge. Phase 2 scales through B2B2C embedded distribution: Revolut (2.1M Portuguese users), Rauva, Coverflex (250K+ users), and Idealista (38M monthly visitors). Phase 3 positions agent-resolv for the emerging agent economy via A2A and AP2 protocols.</p>
+          <p>Phase 1 targets SMEs with mandatory insurance (workers' compensation, professional liability) bundled with voluntary coverage. Intake is omni-channel — email, voice, and WhatsApp depending on the segment. Credit intermediation — specifically mortgage referrals — serves as the customer acquisition wedge. Phase 2 scales through B2B2C embedded distribution: Revolut (2.1M Portuguese users), Rauva, Coverflex (250K+ users), and Idealista (38M monthly visitors). Phase 3 positions agent-resolv for the emerging agent economy via A2A and AP2 protocols.</p>
         </div>
         <div class="exec-card">
           <div class="exec-card-label">The Ask</div>
@@ -550,6 +550,11 @@
         <p><strong>Customer-in, product-out.</strong> The industry works backwards: suppliers design pre-packaged products → brokers present what earns the most commission → customers receive 80-page PDFs and decipher them alone. agent-resolv inverts this entirely. We start with the customer — what do you need to protect, how much coverage, at what price — and then find what fits, across all providers, without bias. Because we are licensed and independent, that trust is contractual.</p>
       </div>
 
+      <div class="callout teal">
+        <div class="callout-label">Omni-Channel Architecture</div>
+        <p><strong>The channel is not a distribution decision — it is a product principle.</strong> The customer chooses how they come in; agent-resolv meets them there. Every channel (WhatsApp, Telegram, email, voice, web, API/A2A) normalises to the same structured intake request before touching the broker agent. The broker agent never knows which channel it came from. One broker, any channel, consistent experience. Different segments have permanent channel preferences — designing for one channel and adding others later means rebuilding the intake layer. agent-resolv is omni-channel from day one.</p>
+      </div>
+
       <div id="architecture">
         <h3>System Architecture</h3>
         <div class="diagram-wrap">
@@ -561,7 +566,7 @@ graph TB
         E[Expat / Individual]
     end
     subgraph agent-resolv
-        ING[Ingestion Layer<br/>WhatsApp / API / A2A]
+        ING[Unified Intake Abstraction<br/>WhatsApp · Telegram · Email · Voice · Web · API/A2A]
         BA[Broker Agent<br/>AI Reasoning Engine]
         CL[Compliance Layer<br/>Human Oversight + Audit]
         PIL[Provider Integration<br/>lluni / i2S / Direct]
@@ -590,7 +595,7 @@ graph TB
     PIL --> INS
     PIL --> BNK
           </div>
-          <div class="diagram-caption">Actor/stakeholder map — all channels converge into a unified broker agent</div>
+          <div class="diagram-caption">Actor/stakeholder map — all channels normalise to the same structured intake before reaching the broker agent</div>
         </div>
 
         <h3>Primary User Journey — SME Insurance</h3>
@@ -642,11 +647,27 @@ sequenceDiagram
         </div>
       </div>
 
+      <h3>Channel Stack</h3>
+      <p>The channel is not a distribution decision — it is a product principle. Different customer segments have <strong>permanent channel preferences</strong>, not transitional ones. Designing for one channel and adding others later means rebuilding the intake layer. agent-resolv is omni-channel from day one: every channel normalises to the same structured request before touching the broker agent.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Channel</th><th>Segment</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>WhatsApp</td><td>Consumer, tech-savvy SME, expat</td><td>Primary async; ~90% PT penetration, 98% open rate</td></tr>
+            <tr><td>Telegram</td><td>AI agents, tech-savvy users</td><td>Agent economy primary channel</td></tr>
+            <tr><td>Email</td><td>Traditional SME professionals (accountants, lawyers, architects)</td><td>First-class front door for this segment — permanent, not transitional</td></tr>
+            <tr><td>Voice (ElevenLabs / Vapi)</td><td>Traditional SME, older demographics, complex intake</td><td>Core infrastructure — qualifying call → structured handoff to broker agent</td></tr>
+            <tr><td>Web</td><td>Inbound, long-form intake</td><td>agent-resolv.com</td></tr>
+            <tr><td>API / A2A</td><td>AI agents, B2B2C platforms</td><td>Machine-readable; structured protocol</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <div id="journeys">
         <h3>Three User Journeys</h3>
 
         <h4>Journey 1 — SME workers' comp + liability</h4>
-        <p>A Porto-based architectural firm (6 employees) messages via WhatsApp. The broker agent conducts structured intake: sector, employee count, annual turnover, existing coverage, claims history. It identifies mandatory workers' compensation, mandatory professional liability (architects: regulated profession), and recommends voluntary cyber insurance. Routes to Fidelidade, Allianz, and Zurich in parallel. Within 48 hours: a comparison table — three options, each explained in plain language. Owner selects via WhatsApp. Policy binding initiated. Total elapsed time: 3–5 days vs. 2–4 weeks through a traditional broker.</p>
+        <p>A Porto-based architectural firm (6 employees) contacts agent-resolv — via email, phone, or WhatsApp depending on their preference. The broker agent conducts structured intake: sector, employee count, annual turnover, existing coverage, claims history. It identifies mandatory workers' compensation, mandatory professional liability (architects: regulated profession), and recommends voluntary cyber insurance. Routes to Fidelidade, Allianz, and Zurich in parallel. Within 48 hours: a comparison table — three options, each explained in plain language. Owner selects via their preferred channel. Policy binding initiated. Total elapsed time: 3–5 days vs. 2–4 weeks through a traditional broker.</p>
 
         <h4>Journey 2 — Mortgage + life + home insurance</h4>
         <p>A young couple buying their first home in Lisbon, embedded in their Idealista property search. Broker agent pre-populates listing data, initiates structured intake: income, employment, deposit, target value. Routes simultaneously to five banks for mortgage and — anticipating bank requirements — bundles life insurance and mandatory fire coverage. The couple receives a unified view: mortgage terms from five banks alongside matched life and home insurance quotes. One conversation, three products.</p>
@@ -665,7 +686,7 @@ sequenceDiagram
               <tr><td>Independent corretor license</td><td>Legal duty to act in client's interest. MUDEY, Coverflex hold agent license only — legally representing the insurer.</td><td>Only 68 entities in Portugal</td></tr>
               <tr><td>AI-native, not AI-augmented</td><td>Built for autonomous execution; incumbents retrofit AI onto manual workflows</td><td>No one in Portugal</td></tr>
               <tr><td>Insurance + credit combined</td><td>Life events trigger simultaneous needs — one conversation, full bundle</td><td>No one in Portugal</td></tr>
-              <tr><td>WhatsApp-native</td><td>90% PT penetration, 98% open rate. Meet customers where they already are.</td><td>No insurance/credit broker</td></tr>
+              <tr><td>Omni-channel by design</td><td>WhatsApp, Telegram, email, voice, API/A2A — unified intake abstraction. Customer chooses the front door; same broker agent regardless. No single-channel competitor can replicate this.</td><td>No insurance/credit broker</td></tr>
               <tr><td>Compliance-ready from day one</td><td>EU AI Act high-risk classification; 93.9% of credit intermediaries found irregular. Audit-readiness is itself a moat.</td><td>No incumbent is prepared</td></tr>
             </tbody>
           </table>
@@ -722,7 +743,7 @@ sequenceDiagram
             <tr>
               <td>1 — Stealth pilot</td>
               <td>Months 0–6</td>
-              <td>WhatsApp, warm network</td>
+              <td>Email + voice + WhatsApp (omni-channel), warm network</td>
               <td>20–50 SMEs in regulated professions</td>
               <td>Time-to-quote &lt;48h, conversion &gt;30%, NPS &gt;50</td>
             </tr>
