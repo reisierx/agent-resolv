@@ -386,9 +386,6 @@
       <li><a href="#exec" class="toc-section">Executive Summary</a></li>
       <li><a href="#problem">1 — The Problem</a></li>
       <li><a href="#solution">2 — The Solution</a></li>
-      <li><a href="#solution-21">↳ 2.1 Customer-In, Product-Out</a></li>
-      <li><a href="#solution-22">↳ 2.2 "A Gente Resolve"</a></li>
-      <li><a href="#solution-23">↳ 2.3 Service as Software</a></li>
       <li><a href="#why-now">3 — Why Now</a></li>
       <li><a href="#market">4 — Market</a></li>
       <li><a href="#market-sizing">↳ 4.1 Market sizing</a></li>
@@ -407,29 +404,15 @@
       <li><a href="#segments-product">↳ 6.6 Segments — product view</a></li>
       <li><a href="#regulatory">7 — Regulatory Path</a></li>
       <li><a href="#reg-eu-model">↳ 7.1 Only viable EU model</a></li>
-      <li><a href="#reg-choice">↳ 7.2 Agente vs Corretor</a></li>
+      <li><a href="#reg-agente-corretor">↳ 7.2 Agente vs Corretor</a></li>
       <li><a href="#reg-ai-act">↳ 7.3 EU AI Act</a></li>
-      <li><a href="#reg-fallback">↳ 7.4 Agent-First Path</a></li>
+      <li><a href="#reg-agent-first">↳ 7.4 Agent-first path</a></li>
       <li><a href="#reg-finlab">↳ 7.5 Portugal FinLab</a></li>
       <li><a href="#business-model">8 — Business Model</a></li>
-      <li><a href="#revenue-arch">↳ 8.1 Revenue architecture</a></li>
-      <li><a href="#revenue-wedge">↳ 8.2 Revenue wedge</a></li>
-      <li><a href="#revenue-proj">↳ 8.3 Revenue projections</a></li>
-      <li><a href="#unit-econ">↳ 8.4 Target unit economics</a></li>
-      <li><a href="#cost-structure">↳ 8.5 Cost structure</a></li>
       <li><a href="#gtm">9 — Go-to-Market</a></li>
-      <li><a href="#gtm-where">↳ 9.1 Where we are</a></li>
-      <li><a href="#gtm-know">↳ 9.2 What we know</a></li>
       <li><a href="#team">10 — Team</a></li>
-      <li><a href="#team-current">↳ 10.1 Current team</a></li>
-      <li><a href="#team-missing">↳ 10.2 What's missing</a></li>
       <li><a href="#ask">11 — The Ask</a></li>
-      <li><a href="#ask-hiring">↳ 11.1 Not just raising</a></li>
-      <li><a href="#ask-raise">↳ 11.2 Pre-seed raise</a></li>
-      <li><a href="#ask-investors">↳ 11.3 Investor landscape</a></li>
       <li><a href="#risks">12 — Risks &amp; Mitigations</a></li>
-      <li><a href="#risk-register">↳ 12.1 Risk register</a></li>
-      <li><a href="#assumptions">↳ 12.2 Key assumptions</a></li>
       <li><a href="#appendix-a">Appendix A</a></li>
     </ul>
   </aside>
@@ -467,9 +450,9 @@
       <div class="section-label">Executive Summary</div>
       <h2>The AI-native insurance and credit broker for Portugal's underserved market</h2>
 
-      <p>74% of Portuguese SMEs carry inadequate coverage. The traditional intermediary network has collapsed 37% since 2019. Credit intermediation exploded from 9% to 57% of mortgage volume in five years, but 93.9% of intermediaries are non-compliant. Fewer than 1% of insurance premiums are sold online. The market is broken — and structurally ready.</p>
+      <p>74% of Portuguese SMEs carry inadequate coverage, 88% cannot explain what their professional liability insurance covers, and the traditional intermediary network is collapsing (down 37% since 2019). Fewer than 1% of insurance premiums are sold online. Simultaneously, credit intermediation has exploded from 9% to 57% of mortgages in five years, but compliance enforcement is nonexistent (93.9% irregularity rate).</p>
 
-      <p>agent-resolv inverts the industry. We start with the customer's actual needs, not product catalogs. The regulatory path is being defined: options include ASF <em>corretor de seguros</em> (independent broker, legal duty to act in client interest) and BdP credit intermediary — each with distinct attributes, requirements, and timelines. The AI agent handles omni-channel intake (WhatsApp, Telegram, email, voice, API), builds a persistent customer account, routes to all providers independently, and returns a recommendation. Humans hold regulatory accountability.</p>
+      <p>agent-resolv inverts the industry. We start with the customer's actual needs — not product catalogs. The regulatory path is being defined: options include ASF <em>corretor de seguros</em> (independent broker, legal duty to act in client interest) and BdP credit intermediary — each with distinct attributes, requirements, and timelines. The AI agent handles omni-channel intake (WhatsApp, Telegram, email, voice, API), builds a persistent customer account, routes to all providers independently, and returns a recommendation. Humans hold regulatory accountability.</p>
 
       <div class="exec-grid">
         <div class="exec-card">
@@ -482,17 +465,17 @@
         </div>
         <div class="exec-card">
           <div class="exec-card-label">Structural Defensibility</div>
-          <p>Independent corretor license carries legal duty to act in client's interest. Persistent customer account compounds LTV over time. Compliance-first positioning in a market where 93.9% of credit intermediaries operate irregularly.</p>
+          <p>The corretor model (working thesis) carries legal duty to act in client's interest — a trust moat no AI-only platform or tied agent can replicate. Persistent customer account compounds LTV. Compliance-first positioning in a market where 93.9% of credit intermediaries operate irregularly.</p>
         </div>
         <div class="exec-card">
           <div class="exec-card-label">Three-Layer Revenue</div>
-          <p>Direct commissions (€1.3B commission market). B2B2C embedded platform fees (Revolut 2.1M PT users, Rauva, Coverflex, Idealista). Future data/analytics. Four segments: Individuals, Businesses, Brokers &amp; Platforms, AI Agents.</p>
+          <p>Direct commissions (€1.3B market, 18.1% avg broker rate). B2B2C platform fees (Revolut 2.1M PT users, Rauva, Coverflex, Idealista). Future data/analytics. Four segments: Individuals, Businesses, Brokers &amp; Platforms, AI Agents.</p>
         </div>
       </div>
 
       <div class="callout teal" style="margin-top:2rem;">
         <div class="callout-label">Team &amp; The Ask</div>
-        <p>Core team locked. BuildUp Labs confirmed as Co-Founder (2026-02-28). JP (BuL CTO) = de facto CTO. Rui Gouveia (BuL MD) = network + GTM. Gonçalo (founder) = strategy, regulatory, fundraising. The raise completes the founding team — investors fill gaps in legal expertise, market relationships, and capital. Pre-seed ask: <strong>€250K–300K</strong>. Pre-money valuation ~€1.4M–1.7M (~15% dilution). SAFE note — cap and discount to be confirmed with legal counsel.</p>
+        <p><strong>Core team locked. Completing the bench through the raise.</strong> Gonçalo (founder) = strategy, regulatory, fundraising. BuildUp Labs confirmed as Co-Founder (2026-02-28): JP (BuL CTO) = de facto CTO; Rui Gouveia (BuL MD) = network + GTM. The raise completes the founding team — investors fill gaps in legal expertise, market relationships, and capital. Pre-seed ask: <strong>€250K–300K</strong>. Pre-money valuation ~€1.4M–1.7M (~15% dilution). SAFE note — cap and discount to be confirmed with legal counsel.</p>
       </div>
     </div>
 
@@ -526,9 +509,7 @@
 
       <p><strong>Fewer than 1% of insurance premiums are sold online.</strong> Only 4% of Portuguese consumers have purchased insurance through a comparison site (vs. 11% EU-wide). No insurer has achieved significant end-to-end digital sales. ASF received 28,939 formal complaints in 2024.</p>
 
-      <p><strong>Credit intermediation is scaling but chaotic.</strong> Mortgage intermediation exploded from 9% to 57% of all mortgage volume in five years (9% in 2019 → €10.2B/57% in 2024). Banco de Portugal's compliance audits found near-universal irregularities among credit intermediaries. Compliance is the exception, not the rule.</p>
-
-      <p>The country has just <strong>68 licensed independent brokers</strong> across a €14.3 billion premium market — serving 1.1 million SMEs. That is a structural vacuum.</p>
+      <p><strong>Credit intermediation is scaling but chaotic.</strong> Mortgage intermediation exploded from 9% to 57% of all mortgage volume in five years (9% in 2019 → €10.2B/57% in 2024). Banco de Portugal's compliance audits found near-universal irregularities among credit intermediaries. The country has just <strong>68 licensed independent brokers</strong> across a €14.3 billion premium market serving 1.1 million SMEs. That is a structural vacuum.</p>
     </div>
 
     <!-- 2. THE SOLUTION -->
@@ -536,11 +517,11 @@
       <div class="section-label"><span class="section-number">02</span> The Solution</div>
       <h2>The broker, agentified</h2>
 
-      <p><strong>agent-resolv is the broker agent.</strong> It sits between the consumer — human or AI agent — and the provider (insurer or bank). It ingests the ask, compiles information, routes to providers, analyzes responses, and returns a recommendation. It is not a chatbot. It is not a comparison site. It is the broker — a complete agentification of brokerage as software.</p>
+      <p><strong>agent-resolv is the broker agent.</strong> It sits between the consumer — human or AI agent — and the provider (insurer or bank). It ingests the ask, compiles information, routes to providers, analyses responses, and returns a recommendation. It is not a chatbot. It is not a comparison site. It is the broker — a complete agentification of brokerage as software.</p>
 
       <p>The regulatory path is being defined. The working thesis is <em>corretor de seguros</em> (ASF) + credit intermediary (BdP) — the combination that enables fully independent, client-first advice across both insurance and lending. Final path subject to legal counsel and regulatory roadmap definition.</p>
 
-      <h3 id="solution-21">2.1 Customer-In, Product-Out</h3>
+      <h3>2.1 Customer-In, Product-Out</h3>
       <p>agent-resolv inverts the industry entirely. We start with the customer:</p>
       <ol style="margin: 1rem 0 1.25rem 1.5rem; color: var(--text-2); font-size: 0.9375rem; line-height: 2;">
         <li>What do you want to protect?</li>
@@ -548,13 +529,12 @@
         <li>For what specifically?</li>
         <li>At what price point?</li>
       </ol>
-      <p>Only then do we find products that match — across all providers, independently, without bias. The customer defines the requirement; we execute the search.</p>
-      <p>Under the corretor model (working thesis), independence is contractual — not marketing. That structural trust, once established, enables us to serve the customer's full financial life: every insurance line, every credit need, at every life stage.</p>
+      <p>Only then do we find products that match — across all providers, independently, without bias. The customer defines the requirement; we execute the search. Under the corretor model (working thesis), independence is contractual — not marketing. That structural trust, once established, enables us to serve the customer's full financial life: every insurance line, every credit need, at every life stage.</p>
 
-      <h3 id="solution-22">2.2 "A Gente Resolve"</h3>
+      <h3>2.2 "A Gente Resolve"</h3>
       <p>Portuguese for "we sort it out." Also: <em>agent</em> + <em>resolv</em>. Triple meaning: the AI agent, the technical resolve, and the human promise. The customer doesn't need to become an expert — they tell us what they need, we take it from there. Trust is the product. Everything else is execution.</p>
 
-      <h3 id="solution-23">2.3 Service as Software</h3>
+      <h3>2.3 Service as Software</h3>
       <p>agent-resolv is not a product customers subscribe to — it is a service that executes end-to-end. The broker agent does what a broker does: information gathering, multi-provider quoting, comparison, recommendation, application processing, policy management. The human layer — licensing, regulatory accountability, judgment on complex cases — is retained through qualified human directors. The result: AI speed and scale with human accountability.</p>
     </div>
 
@@ -563,7 +543,7 @@
       <div class="section-label"><span class="section-number">03</span> Why Now</div>
       <h2>Five converging factors. An 18–36 month window.</h2>
 
-      <p>These five factors compound. Each has an 18–24 month expiry window — miss the entry point, and the next opportunity is post-FiDA (2027–28), when data access is commoditized and incumbents have rebuilt defensibly.</p>
+      <p>These five factors compound — they do not trade off. Miss the window, and the next entry point is post-FiDA (2027–28), when APIs commoditise access and incumbents have rebuilt defensibly.</p>
 
       <ul class="milestone-list">
         <li>
@@ -699,14 +679,13 @@
 
       <div id="gaps">
         <h3>5.3 Structural Gaps Defining the Opportunity</h3>
-        <p>The competitive analysis points to six gaps — none of which any existing player is positioned to close:</p>
         <ol style="margin: 1rem 0 1.25rem 1.5rem; color: var(--text-2); font-size: 0.9375rem; line-height: 2.2;">
           <li><strong style="color:var(--text)">No AI-native insurance broker</strong> in Portugal or Iberia. First mover owns the position.</li>
           <li><strong style="color:var(--text)">No cross-product integration</strong> — no single platform combines insurance and credit advisory despite life events triggering simultaneous needs.</li>
           <li><strong style="color:var(--text)">SME insurance digitally unaddressed</strong> — online share under 1%. No incumbent has achieved significant end-to-end digital sales.</li>
           <li><strong style="color:var(--text)">Expat segment unserved</strong> — 1.54M foreign residents, growing 18%/year, served by a handful of manual English-language brokers.</li>
           <li><strong style="color:var(--text)">Bancassurance dominance is captive distribution</strong> — 72.8% of life premiums flow through banks with conflicted advice. An independent broker is structurally differentiated.</li>
-          <li><strong style="color:var(--text)">FiDA (2027–28) will commoditize data access</strong> — first movers with established relationships and integrations win the transition; late entrants compete on brand alone.</li>
+          <li><strong style="color:var(--text)">FiDA (2027–28) will commoditise data access</strong> — first movers with established relationships and integrations win the transition; late entrants compete on brand alone.</li>
         </ol>
       </div>
     </div>
@@ -752,7 +731,7 @@
           <li>Preference settings — coverage priorities, preferred providers, communication channel</li>
           <li>Opportunities — coverage gaps, renewal optimisations, cross-sell moments the broker agent has identified</li>
         </ul>
-        <p>This is the compounding asset: each interaction enriches the profile, each renewal is a retention moment, each cross-sell multiplies LTV. A customer who first contacts via email and calls six months later is recognized immediately — no re-profiling. No comparison site or traditional broker has this structured and accessible to an AI system.</p>
+        <p>This is the compounding asset: each interaction enriches the profile, each renewal is a retention moment, each cross-sell multiplies LTV. A customer who first contacts via email and calls six months later is recognised immediately — no re-profiling. No comparison site or traditional broker has this structured and accessible to an AI system.</p>
       </div>
 
       <div id="agent-api">
@@ -808,26 +787,36 @@
       <div class="section-label"><span class="section-number">07</span> Regulatory Path</div>
       <h2>Compliance is the product, not a constraint</h2>
 
-      <h3 id="reg-eu-model">7.1 The Only Viable EU Model</h3>
-      <p>No precedent exists in any EU jurisdiction for AI as a licensed entity. IDD fit-and-proper requirements are anthropocentric: they require natural persons with professional qualifications, clean criminal records, and demonstrated competence. The only viable compliance structure is a <strong>licensed entity with AI tools</strong> — a properly licensed brokerage with qualified human directors, deploying AI as operational tooling under human oversight. This is how Harper, Meshed, Flow Specialty, and every other AI-native broker globally is structured.</p>
+      <div id="reg-eu-model">
+        <h3>7.1 The Only Viable EU Model</h3>
+        <p>No precedent exists in any EU jurisdiction for AI as a licensed entity. IDD fit-and-proper requirements are anthropocentric: they require natural persons with professional qualifications, clean criminal records, and demonstrated competence. The only viable compliance structure is a <strong>licensed entity with AI tools</strong> — a properly licensed brokerage with qualified human directors, deploying AI as operational tooling under human oversight. This is how Harper, Meshed, Flow Specialty, and every other AI-native broker globally is structured.</p>
+      </div>
 
-      <h3 id="reg-choice">7.2 Agente vs Corretor de Seguros — The Strategic Choice</h3>
-      <p>Portuguese law draws a clean structural distinction (Lei n.º 7/2019, RJDS):</p>
-      <p><strong>Agente de seguros</strong> — acts on behalf of one or several insurers. The agent's primary legal relationship is with the insurer, not the client. The agent is a sales channel for the insurer. ~10,199 in Portugal. MUDEY, Coverflex, most digital players hold this.</p>
-      <p><strong>Corretor de seguros</strong> — exercises distribution activity independently of insurers. The corretor's privileged contractual relationship is with the <strong>client</strong>. Legal duty to act in the client's best interest (Art. 35 RJDS). Only <strong>68 in Portugal</strong> across a €14.3B premium market.</p>
-      <p>The categories are <strong>mutually exclusive</strong> (Art. 15 RJDS).</p>
-      <p><strong>Working thesis: corretor de seguros.</strong> "A gente resolve" as a brand promise — and the customer-in model — is most strongly grounded with the corretor license. An agente cannot make the same legal promise. The corretor license also passports EU-wide under IDD (Arts. 4 and 6 of Directive 2016/97); an agente license does not. The final path is subject to legal counsel confirmation and regulatory roadmap definition.</p>
+      <div id="reg-agente-corretor">
+        <h3>7.2 Agente vs Corretor de Seguros — The Strategic Choice</h3>
+        <p>Portuguese law draws a clean structural distinction (Lei n.º 7/2019, RJDS):</p>
+        <p><strong>Agente de seguros</strong> — acts on behalf of one or several insurers. The agent's primary legal relationship is with the insurer, not the client. The agent is a sales channel for the insurer. ~10,199 in Portugal. MUDEY, Coverflex, most digital players hold this.</p>
+        <p><strong>Corretor de seguros</strong> — exercises distribution activity independently of insurers. The corretor's privileged contractual relationship is with the <strong>client</strong>. Legal duty to act in the client's best interest (Art. 35 RJDS). Only <strong>68 in Portugal</strong> across a €14.3B premium market.</p>
+        <p>The categories are <strong>mutually exclusive</strong> (Art. 15 RJDS).</p>
+        <p><strong>Working thesis: corretor de seguros.</strong> "A gente resolve" as a brand promise — and the customer-in model — is most strongly grounded with the corretor license. An agente cannot make the same legal promise. The corretor license also passports EU-wide under IDD (Arts. 4 and 6 of Directive 2016/97); an agente license does not. The final path is subject to legal counsel confirmation and regulatory roadmap definition.</p>
+      </div>
 
-      <h3 id="reg-ai-act">7.3 EU AI Act — August 2026 Deadline</h3>
-      <p><strong>Credit scoring AI: definitively high-risk</strong> (Annex III, 5(b)). <strong>Life/health insurance pricing AI: high-risk</strong> (Annex III, 5(c)). <strong>Non-life insurance product recommendation AI: probably not high-risk</strong> — unless it performs profiling of natural persons (Art. 6(3) override).</p>
-      <p><strong>Compliance approach (risk-tiered):</strong> Standard non-life recommendations: HOTL (human-on-the-loop) with exception flagging. Life/health insurance and credit scoring: enhanced HOTL or HITL (human-in-the-loop). All systems: human override capability, interpretability tools, minimum 6-month log retention, FRIA for credit AI, transparency notices to affected persons.</p>
+      <div id="reg-ai-act">
+        <h3>7.3 EU AI Act — August 2026 Deadline</h3>
+        <p><strong>Credit scoring AI: definitively high-risk</strong> (Annex III, 5(b)). <strong>Life/health insurance pricing AI: high-risk</strong> (Annex III, 5(c)). <strong>Non-life insurance product recommendation AI: probably not high-risk</strong> — unless it performs profiling of natural persons (Art. 6(3) override).</p>
+        <p><strong>Compliance approach (risk-tiered):</strong> Standard non-life recommendations: HOTL (human-on-the-loop) with exception flagging. Life/health insurance and credit scoring: enhanced HOTL or HITL (human-in-the-loop). All systems: human override capability, interpretability tools, minimum 6-month log retention, FRIA for credit AI, transparency notices to affected persons.</p>
+      </div>
 
-      <h3 id="reg-fallback">7.4 Agent-First Path — Viable Fallback</h3>
-      <p>The corretor path requires a <em>responsável técnico</em> — a qualified director with 5+ years of licensed intermediary experience, mandated by ASF. If that person cannot be secured within 2–3 months: launch as an agente with a clear internal roadmap to upgrade within 18–24 months. This eliminates the €50,000 capital requirement, the guarantee bond, the experience requirement, and the diversification rules. Gets to market 6–12 months faster. MUDEY took exactly this path.</p>
-      <p>The costs: no legal independence, reduced duty of care, transition friction when upgrading, and reputational risk if marketing as "independent" while holding an agent license.</p>
+      <div id="reg-agent-first">
+        <h3>7.4 Agent-First Path — Viable Fallback</h3>
+        <p>The corretor path requires a <em>responsável técnico</em> — a qualified director with 5+ years of licensed intermediary experience, mandated by ASF. If that person cannot be secured within 2–3 months: launch as an agente with a clear internal roadmap to upgrade within 18–24 months. This eliminates the €50,000 capital requirement, the guarantee bond, the experience requirement, and the diversification rules. Gets to market 6–12 months faster. MUDEY took exactly this path.</p>
+        <p>The costs: no legal independence, reduced duty of care, transition friction when upgrading, and reputational risk if marketing as "independent" while holding an agent license.</p>
+      </div>
 
-      <h3 id="reg-finlab">7.5 Portugal FinLab</h3>
-      <p>Portugal FinLab is a communication channel co-managed by ASF, BdP, and CMVM. Not a formal sandbox, but enables structured dialogue with all three financial regulators simultaneously. agent-resolv should engage FinLab pre-launch.</p>
+      <div id="reg-finlab">
+        <h3>7.5 Portugal FinLab</h3>
+        <p>Portugal FinLab is a communication channel co-managed by ASF, BdP, and CMVM. Not a formal sandbox, but enables structured dialogue with all three financial regulators simultaneously. agent-resolv should engage FinLab pre-launch.</p>
+      </div>
     </div>
 
     <!-- 8. BUSINESS MODEL -->
@@ -835,8 +824,8 @@
       <div class="section-label"><span class="section-number">08</span> Business Model</div>
       <h2>Unit economics that compound on renewal</h2>
 
-      <h3 id="revenue-arch">8.1 Revenue Architecture</h3>
-      <p>Three-layer monetization:</p>
+      <h3>8.1 Revenue Architecture</h3>
+      <p>Three-layer monetisation:</p>
       <p><strong>Layer 1 — Direct commissions.</strong> Insurance and credit intermediation commissions earned from providers. The traditional broker's revenue stream, executed at AI speed and scale.</p>
       <div class="table-wrap">
         <table>
@@ -853,14 +842,14 @@
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.85rem; color:var(--text-3);">Note: Commission rates are volume-dependent and negotiated per insurer. Year 1 rates modeled at 60–80% of market average, ramping to full by Year 2–3.</p>
-      <p><strong>Layer 2 — B2B2C embedded platform fees.</strong> Platforms like Revolut, Rauva, Coverflex, and Idealista integrate agent-resolv's API. Revenue split: agent-resolv earns commission, platform earns a referral fee. Base platform integration fees (€2,000–10,000/month) plus per-API-call fees for high-volume integrations. Benchmark: 60–80% gross margins per bolttech and Cover Genius.</p>
-      <p><strong>Layer 3 — Data/analytics.</strong> Future revenue stream from portfolio analytics, risk intelligence, and market data. Not modeled in projections.</p>
+      <p style="font-size:0.85rem; color:var(--text-3);">Note: Commission rates are volume-dependent and negotiated per insurer. Year 1 rates modelled at 60–80% of market average, ramping to full by Year 2–3.</p>
+      <p><strong>Layer 2 — B2B2C embedded platform fees.</strong> Platforms like Revolut (2.1M PT users), Rauva, Coverflex (250K users), and Idealista (38M monthly visitors) integrate agent-resolv's API. Revenue split: agent-resolv earns commission, platform earns a referral fee. Base platform integration fees (€2,000–10,000/month) plus per-API-call fees for high-volume integrations. Benchmark: 60–80% gross margins per bolttech and Cover Genius.</p>
+      <p><strong>Layer 3 — Data/analytics.</strong> Future revenue stream from portfolio analytics, risk intelligence, and market data. Not modelled in current projections.</p>
 
-      <h3 id="revenue-wedge">8.2 Revenue Wedge</h3>
+      <h3>8.2 Revenue Wedge</h3>
       <p>Credit intermediation — specifically mortgage referrals — serves as the customer acquisition wedge, leveraging proven demand. Doutor Finanças proved credit at scale but treats insurance as an afterthought (see Section 5.1). <strong>That gap is the target.</strong> Credit attracts the customer; insurance is where margin expands and LTV compounds.</p>
 
-      <h3 id="revenue-proj">8.3 Revenue Projections (€K)</h3>
+      <h3>8.3 Revenue Projections (€K)</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Scenario</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead>
@@ -871,9 +860,9 @@
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.85rem; color:var(--text-3);">Base case trajectory: €41K (Y1) → €290K (Y2) → €1,213K (Y3). Assumptions: 75 SME clients Y1, 400 Y2, 1,500 Y3. 2.5 policies/client. €275 avg commission/policy. 50 mortgage deals Y2+. 3 B2B2C partnerships Y3 at €100K/yr each. 85% renewal rate.</p>
+      <p style="font-size:0.85rem; color:var(--text-3);">Base case trajectory: €41K (Y1) → €290K (Y2) → €1,213K (Y3). Base case assumptions: 75 SME clients Y1, 400 Y2, 1,500 Y3. 2.5 policies/client. €275 avg commission/policy. 50 mortgage deals Y2+. 3 B2B2C partnerships Y3 at €100K/yr each. 85% renewal rate.</p>
 
-      <h3 id="unit-econ">8.4 Target Unit Economics (Year 2 Steady-State)</h3>
+      <h3>8.4 Target Unit Economics (Year 2 Steady-State)</h3>
       <p><em>These are target economics based on market benchmarks, not validated actuals. Pilot will test and refine all assumptions.</em></p>
       <div class="table-wrap">
         <table>
@@ -889,7 +878,7 @@
         </table>
       </div>
 
-      <h3 id="cost-structure">8.5 Cost Structure (Year 1)</h3>
+      <h3>8.5 Cost Structure (Year 1)</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Item</th><th>Annual Cost</th></tr></thead>
@@ -911,22 +900,22 @@
       <div class="section-label"><span class="section-number">09</span> Go-to-Market</div>
       <h2>Pilot design first. GTM follows.</h2>
 
-      <h3 id="gtm-where">9.1 Where We Are</h3>
+      <h3>9.1 Where We Are</h3>
       <p>The go-to-market strategy is being actively designed. This is not an omission — it is the honest state of a pre-pilot company making decisions in the right order.</p>
       <p>The immediate priority is defining the pilot/MVP: what we test, with whom, through which mechanism, and what success looks like. That design depends on several open questions being resolved in parallel:</p>
       <ul style="margin: 1rem 0 1.25rem 1.5rem; color: var(--text-2); font-size: 0.9375rem; line-height: 2.2;">
-        <li><strong style="color:var(--text)">Regulatory path:</strong> Which license(s), in what sequence, and what pilot mechanism is available before the entity's own license is granted (e.g., operating through Rolando's existing license as a B2B2C or proxy node — pending confirmation of his registrations)</li>
+        <li><strong style="color:var(--text)">Regulatory path:</strong> Which license(s), in what sequence, and what pilot mechanism is available before the entity's own license is granted</li>
         <li><strong style="color:var(--text)">Product scope:</strong> What does the MVP actually do end-to-end? JP (BuL CTO) is leading this; alignment session scheduled for Wednesday Mar 4</li>
-        <li><strong style="color:var(--text)">Team and investor structure:</strong> Whether Zeev joins (legal workstream, potential investor) shapes the timeline and resources available</li>
+        <li><strong style="color:var(--text)">Team and investor structure:</strong> How the founding team and investor composition shapes the timeline and resources available</li>
         <li><strong style="color:var(--text)">ICP:</strong> Which customer segment to target first — driven by regulatory and technical constraints, not just market attractiveness</li>
       </ul>
       <p>Once these are resolved, the pilot design follows naturally: target segment, channel, success criteria, and scale path. We will define those explicitly before any external go-to-market begins.</p>
 
-      <h3 id="gtm-know">9.2 What We Know</h3>
+      <h3>9.2 What We Know</h3>
       <p>While the pilot design is open, several structural conclusions are already locked:</p>
       <p><strong>Distribution will be dual — direct and embedded.</strong> Direct omni-channel (WhatsApp, email, voice, web) is fastest to market and gives us full control over the customer relationship and data. B2B2C embedded — platforms like Revolut (2.1M PT users), Rauva, Coverflex, Idealista — is the scaling mechanism. The sequence and timing are TBD, but both are in scope.</p>
       <p><strong>Provider integration is a critical path dependency.</strong> Multi-insurer quoting requires either middleware (Habit Analytics API, lluni/i2S) or direct integrations. Manual fallback for non-integrated insurers is available in the short term but not a sustainable model.</p>
-      <p><strong>Warm pipeline exists but is not yet quantified.</strong> Rolando's existing client network and Gonçalo's professional contacts represent a potential pilot source — but the size, conversion likelihood, and accessibility of that pipeline have not been formally assessed.</p>
+      <p><strong>Warm pipeline exists but is not yet quantified.</strong> Existing client networks and Gonçalo's professional contacts represent a potential pilot source — but the size, conversion likelihood, and accessibility of that pipeline have not been formally assessed.</p>
     </div>
 
     <!-- 10. TEAM -->
@@ -934,7 +923,7 @@
       <div class="section-label"><span class="section-number">10</span> Team</div>
       <h2>Core team locked. Completing the bench through the raise.</h2>
 
-      <h3 id="team-current">10.1 Current Team</h3>
+      <h3>10.1 Current Team</h3>
       <div class="exec-grid">
         <div class="exec-card">
           <div class="exec-card-label">Gonçalo Reis — Founder / CEO</div>
@@ -942,14 +931,14 @@
         </div>
         <div class="exec-card">
           <div class="exec-card-label">BuildUp Labs — Co-Founder (confirmed 2026-02-28)</div>
-          <p><strong>JP (BuL CTO)</strong> — de facto CTO for agent-resolv. Owns product/engineering completely. Will deliver v1 system architecture. <strong>Rui Gouveia (BuL MD)</strong> — network, GTM know-how. Co-founder of CoMon. Bridge to key relationships.</p>
+          <p><strong>JP (BuL CTO)</strong> — de facto CTO for agent-resolv. Owns product/engineering completely. Delivers v1 system architecture. <strong>Rui Gouveia (BuL MD)</strong> — network, GTM know-how. Co-founder of CoMon. Bridge to the legal and investment community.</p>
         </div>
       </div>
       <p style="margin-top:1.25rem;"><strong>Fred (friedr.eth)</strong> — AI co-founder operating as research and strategic intelligence system.</p>
 
-      <h3 id="team-missing">10.2 What's Missing</h3>
-      <p><strong>Rolando's roles unconfirmed</strong> — Both his pilot role (B2B2C/proxy mechanism) and his <em>responsável técnico</em> candidacy depend on confirming his actual license type(s) and ASF/BdP registration. Neither role is locked until that confirmation happens (Mar 20+).</p>
-      <p><strong>Responsável técnico backup</strong> — If Rolando qualifies as RT, a single-person dependency remains a structural risk. Need at least two board members independently meeting the 5-year experience requirement.</p>
+      <h3>10.2 What's Missing</h3>
+      <p><strong>Responsável técnico</strong> — The corretor licensing path requires a qualified director with 5+ years of licensed intermediary experience. Identifying and recruiting this person is the critical path dependency for the ASF license. Both the timeline and the pilot mechanism will be shaped by this search.</p>
+      <p><strong>Responsável técnico redundancy</strong> — A single RT creates a structural dependency. The target is at least two board members independently meeting the experience requirement, eliminating single-point-of-failure risk.</p>
     </div>
 
     <!-- 11. THE ASK -->
@@ -957,15 +946,15 @@
       <div class="section-label"><span class="section-number">11</span> The Ask</div>
       <h2>We're not just raising — we're completing the founding team</h2>
 
-      <h3 id="ask-hiring">11.1 We're Not Just Raising — We're Hiring</h3>
+      <h3>11.1 We're Not Just Raising — We're Hiring</h3>
       <p>We have a founder. We have a co-founder in BuildUp Labs. The team covers strategy, product, and engineering.</p>
       <p>What this raise does is close the remaining gaps — and those gaps are not just cash. We are looking for people who bring something we need and who invest instead of drawing a salary. Legal expertise and regulatory network. Market relationships and distribution access. Financial credibility and early validation.</p>
       <p>In that sense, the pre-seed round is less a fundraise and more a founding team completion exercise. The €250K–300K matters — it funds the pilot, licensing process, and runway. But who the money comes from matters just as much.</p>
 
-      <h3 id="ask-raise">11.2 Pre-seed Raise</h3>
+      <h3>11.2 Pre-seed Raise</h3>
       <div class="ask-box">
         <div class="ask-amount">€250K–300K</div>
-        <div class="ask-label">Pre-money valuation ~€1.4M–1.7M (implying ~15% dilution at the midpoint of the range). SAFE note — cap and discount to be confirmed with legal counsel.</div>
+        <div class="ask-label">Pre-seed target. Pre-money valuation ~€1.4M–1.7M (~15% dilution). SAFE note — cap and discount to be confirmed with legal counsel.</div>
         <div class="ask-uses">
           <div class="ask-use">
             <div class="ask-use-label">Licensing &amp; compliance</div>
@@ -986,7 +975,7 @@
         </div>
       </div>
 
-      <h3 id="ask-investors">11.3 Investor Landscape</h3>
+      <h3>11.3 Investor Landscape</h3>
       <p><strong>Strategic investors</strong> — Portuguese insurers with innovation mandates, fintech platforms that could become B2B2C partners, and sector operators with distribution access are natural pre-seed partners given the regulated, relationship-driven nature of the market.</p>
       <p><strong>Financial investors</strong> — Portuguese and Iberian seed-stage funds with fintech or regulated market exposure. European insurtech-focused funds.</p>
     </div>
@@ -998,81 +987,93 @@
 
       <p>Ranked by criticality (probability × severity). Critical risks are existential — they block the business entirely if unresolved. High risks are serious but manageable with active mitigation. Medium risks are real but do not threaten the thesis.</p>
 
-      <h3 id="risk-register">12.1 Risk Register</h3>
+      <h3>12.1 Risk Register</h3>
 
-      <p><strong>Critical</strong></p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Risk</th><th>Probability</th><th>Severity</th><th>Mitigation</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>Licensing delay</strong> — corretor critical path is 9–16 months. Responsável técnico search is the binding constraint; pool of qualified, available, unconflicted candidates is inherently small.</td>
-              <td>High</td><td>High</td>
-              <td>Engage lawyer immediately. Confirm Rolando's license type on return (Mar 20). Agent-first fallback (6–12 months faster) if RT search stalls beyond 2–3 months.</td>
-            </tr>
-            <tr>
-              <td><strong>Rolando uncertainty</strong> — Both pilot mechanism and RT candidacy depend on confirming his actual license type(s). Neither role is locked until then. Single-person RT dependency is a structural fragility.</td>
-              <td>High</td><td>High</td>
-              <td>Confirm registrations on return (Mar 20). Recruit second RT-eligible candidate in parallel. Formalise commitment and role before signing anything.</td>
-            </tr>
-          </tbody>
-        </table>
+      <h4>Critical</h4>
+      <div class="risk-grid">
+        <div class="risk-card">
+          <div class="risk-badge crit">!</div>
+          <div>
+            <div class="risk-title">Licensing delay</div>
+            <div class="risk-body">Corretor critical path is 9–16 months. Responsável técnico search is the binding constraint; pool of qualified, available, unconflicted candidates is inherently small.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Engage lawyer immediately. Agent-first fallback (6–12 months faster) if RT search stalls beyond 2–3 months.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge crit">!</div>
+          <div>
+            <div class="risk-title">Responsável técnico unavailability</div>
+            <div class="risk-body">The corretor license requires a director with 5+ years qualifying experience. The pool of available, willing, unconflicted candidates is structurally small (~69 corretoras operate in Portugal). A single RT is also a single point of failure.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Start search immediately. Recruit at least two RT-eligible board members. Agent-first fallback if search stalls beyond 2–3 months.</div>
+          </div>
+        </div>
       </div>
 
-      <p><strong>High</strong></p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Risk</th><th>Probability</th><th>Severity</th><th>Mitigation</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>Provider integration complexity</strong> — No standardized APIs until FiDA (2027–28). Multi-insurer quoting requires middleware or direct SOAP/XML integrations.</td>
-              <td>High</td><td>Medium</td>
-              <td>Assess Habit Analytics / lluni middleware in parallel with pilot design. Manual fallback viable short-term, not at scale. JP leading feasibility assessment.</td>
-            </tr>
-            <tr>
-              <td><strong>Commission rate ramp</strong> — New broker will not achieve market-average rates from day one. Insurers negotiate rates against volume.</td>
-              <td>High</td><td>Medium</td>
-              <td>Revenue model already accounts for this: Year 1 at 60–80% of market average, ramping to full by Year 2–3. Monitor actual rate-card in first provider conversations.</td>
-            </tr>
-            <tr>
-              <td><strong>Regulatory interpretation risk</strong> — Dual-entity structure (corretor + non-tied credit intermediary) or EU AI Act compliance interpreted more strictly than anticipated.</td>
-              <td>Low–Medium</td><td>High</td>
-              <td>Engage FinLab pre-application. Commission legal assessment from established counsel before entity formation. Compliance-first architecture from day one.</td>
-            </tr>
-          </tbody>
-        </table>
+      <h4>High</h4>
+      <div class="risk-grid">
+        <div class="risk-card">
+          <div class="risk-badge hi">H</div>
+          <div>
+            <div class="risk-title">Provider integration complexity</div>
+            <div class="risk-body">No standardised APIs until FiDA (2027–28). Multi-insurer quoting requires middleware or direct SOAP/XML integrations.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Assess Habit Analytics / lluni middleware in parallel with pilot design. Manual fallback viable short-term, not at scale. JP leading feasibility assessment.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge hi">H</div>
+          <div>
+            <div class="risk-title">Commission rate ramp</div>
+            <div class="risk-body">New broker will not achieve market-average rates from day one. Insurers negotiate rates against volume.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Revenue model accounts for this — Year 1 at 60–80% of market average, ramping to full by Year 2–3. Monitor actual rate-card in first provider conversations.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge hi">H</div>
+          <div>
+            <div class="risk-title">Regulatory interpretation risk</div>
+            <div class="risk-body">Dual-entity structure (corretor + non-tied credit intermediary) or EU AI Act compliance interpreted more strictly than anticipated.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Engage FinLab pre-application. Commission legal assessment from established counsel before entity formation. Compliance-first architecture from day one.</div>
+          </div>
+        </div>
       </div>
 
-      <p><strong>Medium</strong></p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Risk</th><th>Probability</th><th>Severity</th><th>Mitigation</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>Well-funded entrant</strong> — Coverfy (€16M, Barcelona), Weecover, or an international player enters Portugal before we are licensed.</td>
-              <td>Low–Medium</td><td>High</td>
-              <td>Speed to license is the primary defense. The corretor barrier is 9–16 months for any entrant — same clock applies to everyone.</td>
-            </tr>
-            <tr>
-              <td><strong>Portfolio diversification at launch</strong> — Corretor concentration rules are mathematically impossible to meet with a small new book. No new-entrant exemption exists in current legislation.</td>
-              <td>High</td><td>Medium</td>
-              <td>Raise directly with ASF in pre-application consultation. Request written transitional tolerance. Place business with 5+ insurers from day one.</td>
-            </tr>
-            <tr>
-              <td><strong>Market traction slower than modeled</strong> — Warm lead conversion below 30%, or broader market slower to adopt.</td>
-              <td>Medium</td><td>Medium</td>
-              <td>Pilot validates assumptions before committing to scale. Fallback to B2B2C embedded if D2C acquisition proves harder than expected.</td>
-            </tr>
-            <tr>
-              <td><strong>D2C acquisition gap</strong> — Between warm leads (pilot) and B2B2C partnerships (scale), no defined acquisition channel exists.</td>
-              <td>Medium</td><td>Medium</td>
-              <td>Active gap. Rui Gouveia (BuL) owns GTM; acquisition strategy is a Wednesday alignment session agenda item.</td>
-            </tr>
-          </tbody>
-        </table>
+      <h4>Medium</h4>
+      <div class="risk-grid">
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">Well-funded entrant</div>
+            <div class="risk-body">Coverfy (€16M, Barcelona), Weecover, or an international player enters Portugal before we are licensed.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Speed to license is the primary defense. The corretor barrier is 9–16 months for any entrant — same clock applies to everyone.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">Portfolio diversification at launch</div>
+            <div class="risk-body">Corretor concentration rules are mathematically impossible to meet with a small new book. No new-entrant exemption exists in current legislation.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Raise directly with ASF in pre-application consultation. Request written transitional tolerance. Place business with 5+ insurers from day one.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">Market traction slower than modelled</div>
+            <div class="risk-body">Warm lead conversion below 30%, or broader market slower to adopt.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Pilot validates assumptions before committing to scale. Fallback to B2B2C embedded if D2C acquisition proves harder than expected.</div>
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-badge med">M</div>
+          <div>
+            <div class="risk-title">D2C acquisition gap</div>
+            <div class="risk-body">Between warm leads (pilot) and B2B2C partnerships (scale), no defined acquisition channel exists.</div>
+            <div class="risk-mit"><strong>Mitigant:</strong> Active gap. GTM strategy is being designed now — acquisition for months 6–18 is a specific open item in the pilot design process.</div>
+          </div>
+        </div>
       </div>
 
-      <h3 id="assumptions">12.2 Key Assumptions Requiring Validation</h3>
+      <h3>12.2 Key Assumptions Requiring Validation</h3>
       <p>Three tiers: thesis-level assumptions (if wrong, the business case changes fundamentally), pilot-level assumptions (if wrong, the pilot design changes), and financial assumptions (if wrong, the model needs revision).</p>
 
       <p><strong>Thesis-level</strong></p>
@@ -1080,9 +1081,9 @@
         <table>
           <thead><tr><th>Assumption</th><th>Why It Matters</th><th>How We Validate</th></tr></thead>
           <tbody>
-            <tr><td>The corretor license is achievable within 9–16 months</td><td>The entire independent positioning depends on it. If the RT bottleneck proves unsolvable, the agent-first fallback changes the competitive story.</td><td>Engage lawyer immediately. Confirm Rolando's eligibility. Pre-application consultation with ASF/FinLab.</td></tr>
+            <tr><td>The corretor license is achievable within 9–16 months</td><td>The entire independent positioning depends on it. If the RT bottleneck proves unsolvable, the agent-first fallback changes the competitive story.</td><td>Engage lawyer immediately. RT search begins immediately. Pre-application consultation with ASF/FinLab.</td></tr>
             <tr><td>Corretor is worth the cost over agente</td><td>€85–105K capital outlay and 9–16 month delay vs. faster agente path. The bet: independent status is a durable moat, not just a marketing claim.</td><td>MUDEY's 5-year failure to upgrade is the strongest evidence. Working thesis — final confirmation requires legal counsel and regulatory roadmap.</td></tr>
-            <tr><td>AI handles 80%+ of brokerage workflow under human oversight</td><td>The core product thesis. If AI capability is insufficient for the Portuguese market specifics (language, document formats, insurer systems), the unit economics break.</td><td>JP's PRD shows 90–93% email parsing accuracy on limited data. Production validation is the pilot's primary technical objective.</td></tr>
+            <tr><td>AI handles 80%+ of brokerage workflow under human oversight</td><td>The core product thesis. If AI capability is insufficient for Portuguese market specifics (language, document formats, insurer systems), the unit economics break.</td><td>Production validation is the pilot's primary technical objective.</td></tr>
             <tr><td>The market gap is structural, not cyclical</td><td>74% SME underinsurance and the intermediary collapse are real and not self-correcting.</td><td>ASF and BdP data confirms the trend is multi-year and accelerating. IDD consolidation is ongoing.</td></tr>
           </tbody>
         </table>
@@ -1093,9 +1094,9 @@
         <table>
           <thead><tr><th>Assumption</th><th>Why It Matters</th><th>How We Validate</th></tr></thead>
           <tbody>
-            <tr><td>Rolando's existing license enables the pilot mechanism</td><td>If his license type doesn't support the B2B2C or proxy arrangement we need, the pilot mechanism changes entirely.</td><td>Confirm ASF/BdP registrations on return (Mar 20). Legal counsel to assess viable mechanism.</td></tr>
+            <tr><td>A pilot mechanism is available before the entity's own license is granted</td><td>Without a licensed mechanism to test the brokerage flow, the pilot cannot begin. The pilot feeds the fundraise narrative.</td><td>Legal counsel to assess viable mechanism. Confirm available licensed relationships and their scope.</td></tr>
             <tr><td>Provider integration is feasible at pilot scale</td><td>Without multi-insurer quoting, there is no brokerage. Manual fallback works for a handful of policies, not as a product.</td><td>JP assessing Habit Analytics / lluni middleware. Outcome expected post Wednesday alignment session.</td></tr>
-            <tr><td>Warm pipeline has sufficient density for a meaningful pilot</td><td>Rolando's network and Gonçalo's contacts are the assumed pilot source. If the pipeline is too thin, pilot design needs a different acquisition approach.</td><td>Quantify pipeline before pilot launch. Minimum viable cohort TBD based on pilot design.</td></tr>
+            <tr><td>Warm pipeline has sufficient density for a meaningful pilot</td><td>Existing networks are the assumed pilot source. If the pipeline is too thin, pilot design needs a different acquisition approach.</td><td>Quantify pipeline before pilot launch. Minimum viable cohort TBD based on pilot design.</td></tr>
             <tr><td>Pilot design can be agreed and launched before pre-seed closes</td><td>We are raising to fund the pilot, not after it. If pilot design stalls, fundraise stalls.</td><td>Wednesday alignment session with JP and Rui is the forcing function.</td></tr>
           </tbody>
         </table>
@@ -1107,7 +1108,7 @@
           <thead><tr><th>Assumption</th><th>Why It Matters</th><th>How We Validate</th></tr></thead>
           <tbody>
             <tr><td>Commission rates achievable at 60–80% of market average in Year 1</td><td>Revenue model is built on this ramp. Lower rates compress the path to sustainability.</td><td>First provider conversations. Rate-card benchmarking before pilot launch.</td></tr>
-            <tr><td>85% SME insurance renewal rate</td><td>Drives LTV and the compounding account thesis. If churn is higher, the unit economics weaken materially.</td><td>Industry benchmarking first; pilot data as the ground truth.</td></tr>
+            <tr><td>85% SME insurance renewal rate</td><td>Drives LTV and the compounding account thesis. If churn is higher, unit economics weaken materially.</td><td>Industry benchmarking first; pilot data as the ground truth.</td></tr>
           </tbody>
         </table>
       </div>
@@ -1122,11 +1123,11 @@
 
       <p><strong>The underlying thesis:</strong> any market where suppliers structure information to their advantage and consumers navigate complexity alone is attackable with the same model. The beachhead is insurance + credit. But the arc is agent-resolv as a platform: /irs-declaration → /energy → /phone-internet → and beyond.</p>
 
-      <p><strong>Agent economy track:</strong> A separate track for agent-to-agent services — a knowledge marketplace where AI agents pay for structured analysis. Architecturally distinct from consumer intermediation. Examples: one AI agent calls another to quote a specific risk scenario; agent-resolv is the counterparty providing licensed brokerage at machine speed and pricing. This track is not modeled in Y1–Y3 financials but is the long-term moat against aggregation.</p>
+      <p><strong>Agent economy track:</strong> A separate track for agent-to-agent services — a knowledge marketplace where AI agents pay for structured analysis. Architecturally distinct from consumer intermediation. Examples: one AI agent calls another to quote a specific risk scenario; agent-resolv is the counterparty providing licensed brokerage at machine speed and pricing. This track is not modelled in Y1–Y3 financials but is the long-term moat against aggregation.</p>
 
       <p><strong>EU expansion (Year 3+):</strong> If the corretor path is taken, the license passports EU-wide under IDD — Spain, France, Italy accessible via notification to ASF. Duplicate entity structure per market, shared AI infrastructure. Year 3 target: 2–3 EU markets, 10,000+ combined active clients.</p>
 
-      <p><strong>Data and analytics layer (Year 4+):</strong> Portfolio risk analytics, market trend intelligence, premium optimization. Monetize the compounded customer data as a service layer to insurers, reinsurers, and brokers. Benchmark: Optic Insurance Data (acquisition $50M+).</p>
+      <p><strong>Data and analytics layer (Year 4+):</strong> Portfolio risk analytics, market trend intelligence, premium optimisation. Monetise the compounded customer data as a service layer to insurers, reinsurers, and brokers. Benchmark: Optic Insurance Data (acquisition $50M+).</p>
     </div>
 
   </main>
