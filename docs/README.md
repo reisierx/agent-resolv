@@ -9,9 +9,9 @@ Internal knowledge base. Not rendered publicly.
 ```
 docs/
 ├── INVESTMENT-MEMO.md       ← Canonical source of truth: thesis, product, market, decisions
-├── PRD-v1.0.md              ← Product Requirements Document v1.0
+├── PRD-v1.0.md              ← Product Requirements Document v1.0 (superseded by tech/prd/)
 │
-├── research/                ← Research files (date-prefixed)
+├── research/                ← Market/business research files (date-prefixed)
 │   ├── INDEX.md             ← One-line summary of every research file
 │   └── YYYY-MM-DD-topic.md
 │
@@ -19,8 +19,12 @@ docs/
 │   ├── 2026-03-12-withcoverage-intelligence.md   ← JP's WithCoverage deep-dive
 │   └── 2026-03-12-withcoverage-analysis-fred.md  ← Fred's analysis + open questions
 │
-└── memos/                   ← Meeting prep, investor briefs, external memos
-    └── bruno-dinis-meeting-prep.md
+├── memos/                   ← Meeting prep, investor briefs, external memos
+│   └── bruno-dinis-meeting-prep.md
+│
+└── tech/                    ← Technical layer (owned by JP / BuL)
+    ├── prd/                 ← Full tech PRD (7 sections: exec summary → Claude Code guide)
+    └── research/            ← Tech research: AI spikes, integrations, Mastra, onboarding
 ```
 
 ---
