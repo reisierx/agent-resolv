@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>agent-resolv flows</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; margin: 0; padding: 24px; }
+  h1 { font-size: 1.4rem; font-weight: 700; color: #f8fafc; margin-bottom: 4px; }
+  .subtitle { font-size: 0.85rem; color: #64748b; margin-bottom: 32px; }
+  h2 { font-size: 1rem; font-weight: 600; color: #94a3b8; margin: 32px 0 16px; border-bottom: 1px solid #1e293b; padding-bottom: 8px; }
+  .mermaid { background: #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 24px; overflow-x: auto; }
+  .open-q { background: #1e293b; border-radius: 12px; padding: 20px 24px; }
+  .open-q h2 { margin-top: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: #64748b; padding: 8px 12px; border-bottom: 1px solid #334155; font-weight: 500; }
+  td { padding: 8px 12px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+  td:first-child { color: #64748b; width: 32px; }
+  td:nth-child(2) { color: #e2e8f0; }
+  td:nth-child(3) { color: #94a3b8; }
+  .tag { display: inline-block; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: 4px; }
+  .open { background: #422006; color: #fb923c; }
+  .decided { background: #052e16; color: #4ade80; }
+</style>
+</head>
+<body>
+<h1>agent-resolv.com — User &amp; Node Flows</h1>
+<div class="subtitle">Persistent artifact · Last updated 2026-02-22 · <span class="tag open">❓ open</span> = question · <span class="tag decided">✅</span> = decided</div>
+
+<h2>Flow 1 — Customer Journey</h2>
+<div class="mermaid">
+flowchart TD
+    A([Customer]) --> B{How do they arrive?}
+    B -->|"❓ Broker referral"| C[Invitation link\nfrom Rolando]
+    B -->|"❓ Organic"| D[agent-resolv.com\nhomepage]
+    C & D --> E[Register & consent]
+    E --> F{Setup type?}
+    F -->|Tech-savvy| G[Desktop vault\nDocs stay local]
+    F -->|Everyone else| H[Web vault\nEncrypted, hosted]
+    G & H --> I[State a need\ne.g. mortgage,\ncar insurance]
+    I --> J[Client agent\nProcesses need\nextracts data from docs]
+    J --> K[Routing agent\nagent-resolv\nMatches to nodes]
+    K --> L{Match found?}
+    L -->|No| M["❓ Waitlist?\nExpand geo?"]
+    L -->|Yes| N[Request to broker\nPre-packaged context\nno raw docs]
+    N --> O[Broker accepts]
+    O --> P[Broker engages\nclient via platform]
+    P --> Q[Transaction closes]
+    Q --> R[Outcome logged\nReputation updated]
+    R --> S{"❓ Who owns\nthe client?"}
+    S -->|"✅ Goal"| T[Platform owns\nbroker is a node]
+    S -->|"❓ Risk"| U[Client follows\nbroker out]
+
+    style A fill:#1d4ed8,stroke:#3b82f6,color:#fff
+    style T fill:#166534,stroke:#22c55e,color:#fff
+    style U fill:#7f1d1d,stroke:#ef4444,color:#fff
+    style M fill:#422006,stroke:#f97316,color:#fff
+    style S fill:#1e1b4b,stroke:#818cf8,color:#fff
+</div>
+
+<h2>Flow 2 — Broker Node Onboarding</h2>
+<div class="mermaid">
+flowchart TD
+    A([Broker]) --> B{"❓ How do\nthey join?"}
+    B -->|Invited| C[Invite from\nReisierX]
+    B -->|Open app| D[Apply at\nagent-resolv.com]
+    C & D --> E[License verification\nASF / Banco de Portugal]
+    E --> F{Approved?}
+    F -->|No| G[Rejected /\npending info]
+    F -->|Yes| H[Configure node]
+    H --> I[Products & services\ne.g. mortgage, insurance]
+    I --> J[Geography\ne.g. Sardoal, national]
+    J --> K[Capacity\nmax requests/month]
+    K --> L["❓ Fee / commission\nHow does broker get paid?\nHow does ReisierX get paid?"]
+    L --> M([Go live as node])
+    M --> N[Routing agent\ncan now match to broker]
+    N --> O[Receives routed request\npre-packaged context]
+    O --> P{Accept?}
+    P -->|No| Q[Declined\nRe-routed]
+    P -->|Yes| R[Engage client\nvia platform]
+    R --> S[Close transaction]
+    S --> T[Outcome logged\nReputation updates\nFeeds routing priority]
+
+    style A fill:#7c3aed,stroke:#a78bfa,color:#fff
+    style M fill:#166534,stroke:#22c55e,color:#fff
+    style L fill:#422006,stroke:#f97316,color:#fff
+    style B fill:#422006,stroke:#f97316,color:#fff
+</div>
+
+<h2>Flow 3 — Routing Logic (the core)</h2>
+<div class="mermaid">
+flowchart TD
+    A[Incoming request\nfrom client agent] --> B[Parse need\nproduct type + params]
+    B --> C[Match against\nbroker node registry]
+    C --> D[License covers\nthis product?]
+    D --> E[Geography\nmatch?]
+    E --> F[Capacity\navailable?]
+    F --> G["❓ Reputation threshold\nmet?"]
+    G --> H[Ranked shortlist\nof broker nodes]
+    H --> I{"❓ Routing\nstrategy?"}
+    I -->|Best match only| J[Single broker\nnotified]
+    I -->|Top 3 compete| K[Multiple brokers\nfirst to accept wins]
+    J & K --> L[Broker accepts]
+    L --> M[Client agent +\nbroker connected]
+
+    style A fill:#0f766e,stroke:#14b8a6,color:#fff
+    style M fill:#166534,stroke:#22c55e,color:#fff
+    style G fill:#422006,stroke:#f97316,color:#fff
+    style I fill:#422006,stroke:#f97316,color:#fff
+</div>
+
+<div class="open-q">
+<h2>Open Questions — Surface for Feb 25</h2>
+<table>
+<tr><th>#</th><th>Question</th><th>Why it matters</th></tr>
+<tr><td>1</td><td>How does the first customer arrive? Broker referral or organic?</td><td>Defines GTM motion entirely</td></tr>
+<tr><td>2</td><td>Who owns the client relationship — platform or broker?</td><td>Core defensibility question</td></tr>
+<tr><td>3</td><td>What happens when a broker leaves?</td><td>Platform vs. tool distinction</td></tr>
+<tr><td>4</td><td>Invitation-only or open broker application?</td><td>Supply growth strategy</td></tr>
+<tr><td>5</td><td>How does ReisierX make money? Per transaction? SaaS?</td><td>Revenue model undefined</td></tr>
+<tr><td>6</td><td>How does routing agent know which provider accepts which credential format?</td><td>Knowledge base problem</td></tr>
+<tr><td>7</td><td>Best match vs. competing brokers — routing strategy?</td><td>UX + broker incentives</td></tr>
+<tr><td>8</td><td>How does license verification work? Manual or API?</td><td>Ops complexity</td></tr>
+</table>
+</div>
+
+<script>mermaid.initialize({startOnLoad:true, theme:'dark', themeVariables:{primaryColor:'#1e293b',primaryTextColor:'#e2e8f0',primaryBorderColor:'#334155',lineColor:'#64748b',secondaryColor:'#0f172a',tertiaryColor:'#1e293b'}});</script>
+</body>
+</html>
